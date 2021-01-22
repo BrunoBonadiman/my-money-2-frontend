@@ -1,0 +1,43 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark black" [containerInside]="false">
+  <mdb-navbar-brand><img src="../../assets/img/unnamed.png" alt="" id="logo"></mdb-navbar-brand>
+  &nbsp;
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" [routerLink]="['/dashboard']" mdbWavesEffect>Inicio<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" [routerLink]="['/cadastro']" mdbWavesEffect>Cadastro<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Relatórios<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-bruno']" mdbWavesEffect>Relatório Mensal Bruno</a>
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-franciele']" mdbWavesEffect>Relatório Mensal Franciele</a>
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-deco']" mdbWavesEffect>Relatório Mensal Deco</a>
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-penha']" mdbWavesEffect>Relatório Mensal Penha</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="userDetails">
+      <li class="nav-item" style=" margin-top:10px;">
+        <span style="color: white;">Seja Bem-vindo(a) {{userDetails.fullName}}</span>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <div class="btn-group" mdbDropdown>
+            <!-- <img [src]="selectedUser?.urlImage ? env+selectedUser.urlImage : '../../../../assets/img/usuarioFoto.png'" width="30"
+            height="30" class="d-inline-block align-top" alt="" loading="lazy" class="rounded float-right" mdbDropdownToggle> -->
+            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+              <a class="dropdown-item" href="#">Perfil</a>
+              <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item" (click)="onLogout()">Sair</a>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>

@@ -1,0 +1,10 @@
+[0114/203240.478:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[0115/100718.396:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[0117/124158.383:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[0119/094428.552:ERROR:crash_report_database_win.cc(496)] failed to stat report
+[0119/094530.228:ERROR:crash_report_database_win.cc(496)] failed to stat report
+[0119/095428.553:ERROR:crash_report_database_win.cc(496)] failed to stat report
+[0119/095428.553:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\bruno\AppData\Local\Google\Chrome\User Data\Crashpad\reports\4e2ce75b-028e-45fc-b8be-1ed044e9b322.dmp: O sistema não pode encontrar o arquivo especificado. (0x2)
+[0119/095428.557:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[0119/164355.687:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[0120/115217.745:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)

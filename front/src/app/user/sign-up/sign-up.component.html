@@ -1,0 +1,60 @@
+<mdb-card>
+  <mdb-card-header class="info-color white-text text-center py-4">
+    <h5>
+      <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;<strong>Cadastro</strong>
+    </h5>
+  </mdb-card-header>
+  <mdb-card-body class="px-lg-5 pt-0">
+    <form class="text-center" style="color: #757575;" #signUpForm="ngForm"
+      (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+      <div class="md-form mb-5">
+        <input type="text" class="form-control" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName"
+          name="fullName" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }" mdbInput
+          mdbValidate>
+        <label for="fullName">Nome</label>
+        <div class="validation" *ngIf="signUpForm.submitted && !fullName.valid">
+          <mdb-error *ngIf="email.errors.required">Este campo é obrigatório.</mdb-error>
+        </div>
+      </div>
+      <div class="md-form mb-5">
+        <input type="text" class="form-control" #email="ngModel" [(ngModel)]="userService.selectedUser.email"
+          name="email" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }" mdbInput
+          mdbValidate>
+        <label for="email">E-mail</label>
+        <div class="validation" *ngIf="signUpForm.submitted && email.errors">
+          <mdb-error *ngIf="email.errors.required">Este campo é obrigatório.</mdb-error>
+          <mdb-error *ngIf="email.errors.pattern">Endereço de email inválido.</mdb-error>
+        </div>
+      </div>
+      <div class="md-form mb-5">
+        <input type="password" class="form-control" #password="ngModel" [(ngModel)]="userService.selectedUser.password"
+          name="password" minlength="4" required
+          [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }" mdbInput mdbValidate>
+        <label for="password">Senha</label>
+        <div class="validation" *ngIf="signUpForm.submitted && password.errors">
+          <mdb-error *ngIf="password.errors.required">Este campo é obrigatório.</mdb-error>
+          <mdb-error *ngIf="password.errors.minlength">Digite pelo menos 4 caracteres.</mdb-error>
+        </div>
+      </div>
+      <div class="md-form mb-5">
+        <input class="form-control form-control-sm" type="file" name="urlImage" #urlImage="ngModel"
+          [(ngModel)]="userService.selectedUser.urlImage" required>
+          <!-- <labeL for="urlImage">Link Imagem</labeL> -->
+      </div>
+
+      <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
+        mdbWavesEffect type="submit">Cadastrar</button>
+
+      <hr>
+      <p>Já possui uma conta?
+        <a routerLink="/login" routerLinkActive="active">Entrar</a>. </p>
+
+    </form>
+    <div class="alert alert-success" role="alert" *ngIf="showSucessMessage">
+      Usuário cadastrado com sucesso!
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="serverErrorMessages">
+      {{serverErrorMessages}}
+    </div>
+  </mdb-card-body>
+</mdb-card>

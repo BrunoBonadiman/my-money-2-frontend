@@ -1,0 +1,52 @@
+#bruno-card {
+  background-color: #3498DB;
+}
+
+#franciele-card {
+  background-color:#F1C40F;
+}
+
+#deco-card {
+  background-color: #27AE60;
+}
+
+#penha-card {
+  background-color: #D35400;
+}
+
+#penha-img{
+  width: 160px;
+  height: 180px;
+  margin-top:5px;
+}
+
+#deco-img{
+  width: 160px;
+  height: 180px;
+  margin-top:5px;
+}
+
+#franciele-img{
+  width: 160px;
+  height: 180px;
+  margin-top:5px;
+}
+
+#bruno-img{
+  width: 160px;
+  height: 180px;
+  margin-top:5px;
+}
+
+@media all and (min-width: 768px) {
+  tr  {
+    td {
+      vertical-align: middle !important;
+    }
+    span {
+      &:not([class]) {
+        padding: 1rem 1rem;
+      }
+    }
+  }
+}

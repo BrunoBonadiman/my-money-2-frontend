@@ -1,0 +1,55 @@
+<app-sidebar></app-sidebar>
+<div class="container">
+  <mdb-card style="margin-top:20px;">
+    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+      <a>
+        <div class="mask"></div>
+      </a>
+    </div>
+    <mdb-card-header>
+      <h4>Cadastro de Contas</h4>
+    </mdb-card-header>
+    <mdb-card-body>
+      <form #contasForm="ngForm" (ngSubmit)="onSubmit(contasForm)">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="descricao">Conta:</label>
+            <input type="text" name="descricao" #name="ngModel"
+              [(ngModel)]="contasService.selectConta.descricao" required class="form-control" autocomplete="off">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="valorTotal">Valor:</label>
+            <input name="valorTotal" type="text" #name="ngModel" [(ngModel)]="contasService.selectConta.valorTotal"
+              class="form-control" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" currencyMask autocomplete="off">
+          </div>
+          <div class="form-group col-md-4">
+            <label for=" vencimento">Vencimento:</label>
+            <input type="date" name="vencimento" #name="ngModel" [(ngModel)]="contasService.selectConta.vencimento"
+              class="form-control" autocomplete="off">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="status">Status:</label>
+            <select id="status" name="status" #name="ngModel" [(ngModel)]="contasService.selectConta.status"
+              required class="form-control">
+              <option selected disabled>Selecione...</option>
+              <option>Pago</option>
+              <option>Pendente</option>
+            </select>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="input-field col s12">
+            <button mdbBtn type="button" color="default" outline="true" mdbWavesEffect type="button" (click)="resetForm(contasForm)">Limpar
+              Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+            &nbsp;
+            <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect type="submit" [disabled]="!contasForm.valid">Cadastrar &nbsp;
+              <i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </form>
+    </mdb-card-body>
+  </mdb-card>
+</div>
