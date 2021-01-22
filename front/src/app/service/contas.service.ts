@@ -7,7 +7,7 @@ import { Contas } from '../model/contas-model';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = process.env.ANGULAR_APP + '/api/contas';
+const apiUrl = 'http://localhost:3001/api/contas';
 
 @Injectable({
   providedIn: 'root'

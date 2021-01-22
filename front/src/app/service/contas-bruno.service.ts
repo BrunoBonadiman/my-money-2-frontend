@@ -7,11 +7,12 @@ import { ContasBruno } from '../model/contas-bruno-model';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = process.env.ANGULAR_APP + '/api/contas/bruno';
+const apiUrl = 'http://localhost:3001/api/contas/bruno';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ContasBrunoService {
   selectContaBruno: ContasBruno = {
   _id: '',

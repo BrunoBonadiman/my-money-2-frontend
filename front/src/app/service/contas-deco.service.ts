@@ -8,7 +8,7 @@ import { ContasDeco } from '../model/contas-deco-model';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = process.env.ANGULAR_APP + '/api/contas/deco';
+const apiUrl = 'http://localhost:3001/api/contas/deco';
 
 @Injectable({
   providedIn: 'root'
