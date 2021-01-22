@@ -7,7 +7,7 @@ import { ContasBruno } from '../model/contas-bruno-model';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = 'http://localhost:3001/api/contas/bruno';
+const apiUrl = 'https://my-money-2-backend.herokuapp.com/api/contas/bruno';
 
 @Injectable({
   providedIn: 'root'

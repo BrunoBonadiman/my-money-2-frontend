@@ -8,7 +8,7 @@ import { ContasDeco } from '../model/contas-deco-model';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = 'http://localhost:3001/api/contas/deco';
+const apiUrl = 'https://my-money-2-backend.herokuapp.com/api/contas/deco';
 
 @Injectable({
   providedIn: 'root'

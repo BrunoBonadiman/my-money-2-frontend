@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { User } from './user.model';
 import { Observable } from 'rxjs';
 
-const apiUrl = 'http://localhost:3001/api';
+const apiUrl = 'https://my-money-2-backend.herokuapp.com/api';
 
 @Injectable({
   providedIn: 'root',

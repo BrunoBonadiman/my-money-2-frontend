@@ -7,7 +7,7 @@ import { ContasFranciele } from '../model/contas-franciele-model';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-const apiUrl = 'http://localhost:3001/api/contas/franciele';
+const apiUrl = 'https://my-money-2-backend.herokuapp.com/api/contas/franciele';
 
 @Injectable({
   providedIn: 'root'
