@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { User } from './user.model';
 import { Observable } from 'rxjs';
 
+const apiUrl = 'http://localhost:3001/api';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +23,7 @@ export class UserService {
 
   postUser(user: User) {
     return this.http.post(
-      environment.apiBaseUrl + '/register',
+      `${apiUrl}` + '/register',
       user,
       this.noAuthHeader
     );
@@ -29,18 +31,18 @@ export class UserService {
 
   login(authCredentials) {
     return this.http.post(
-      environment.apiBaseUrl + '/authenticate',
+      `${apiUrl}` + '/authenticate',
       authCredentials,
       this.noAuthHeader
     );
   }
 
   getUserProfile() {
-    return this.http.get(environment.apiBaseUrl + '/userProfile');
+    return this.http.get(`${apiUrl}` + '/userProfile');
   }
 
   getUser(id: string) {
-    return this.http.get(environment.apiBaseUrl + '/' + id);
+    return this.http.get(`${apiUrl}` + '/' + id);
   }
 
   //Helper Methods
@@ -72,7 +74,7 @@ export class UserService {
   }
 
   adicionarFoto(imagem:FormData):Observable<any> {
-    return this.http.post(`${environment.apiBaseUrl}/usuarios/imagem`,imagem,{
+    return this.http.post(`${apiUrl}` + '/usuarios/imagem' ,imagem,{
     });
   }
 }
