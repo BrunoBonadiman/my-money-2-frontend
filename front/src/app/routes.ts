@@ -9,6 +9,7 @@ import { RelatorioBrunoComponent } from './relatorio-bruno/relatorio-bruno.compo
 import { RelatorioFrancieleComponent } from './relatorio-franciele/relatorio-franciele.component';
 import { RelatorioPenhaComponent } from './relatorio-penha/relatorio-penha.component';
 import { RelatorioDecoComponent } from './relatorio-deco/relatorio-deco.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 export const appRoutes: Routes = [
   {
@@ -48,6 +49,10 @@ export const appRoutes: Routes = [
   {
     path: 'relatorio-penha',
     component: RelatorioPenhaComponent,
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
   },
   {
     path: '',

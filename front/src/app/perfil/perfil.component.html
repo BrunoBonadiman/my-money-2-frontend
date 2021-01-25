@@ -1,0 +1,48 @@
+<app-sidebar></app-sidebar>
+<div class="container-fluid">
+  <div class="col-md-12">
+    <mdb-card style="margin-top:20px;">
+      <div class="text-center">
+      <img src="../../assets/img/user-01.png" style="border-radius: 160px; width:200px">
+      </div>
+      <mdb-card-body *ngIf="userDetails">
+        <div class="text-center">
+          <h4>
+            <strong>{{userDetails.fullName}}</strong>
+          </h4>
+        </div>
+        <mdb-card-text class="text-center">
+          <span>{{userDetails.email}}</span>
+        </mdb-card-text>
+        <div class="text-center">
+           <!--Facebook-->
+        <a type="button" mdbBtn floating="true" size="lg" style="color:#3b5998;" mdbWavesEffect>
+          <mdb-icon fab icon="facebook"></mdb-icon>
+        </a>
+        <!--Twitter-->
+        <a type="button" mdbBtn floating="true" size="lg" style="color:#00acee;" mdbWavesEffect>
+          <mdb-icon fab icon="twitter-square"></mdb-icon>
+        </a>
+        <a type="button" mdbBtn floating="true" size="lg" style="color:#db4a39;" mdbWavesEffect>
+          <mdb-icon fab icon="google-plus-square"></mdb-icon>
+        </a>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+
+  <!-- <mdb-card>
+    <mdb-card-body>
+      <div class="text-center" *ngIf="userDetails">
+        <h4>{{userDetails.fullName}}</h4>
+      </div>
+      <mdb-card-text class="text-center">
+        <span>{{userDetails.email}}</span>
+      </mdb-card-text> -->
+      <!-- <form>
+        <input type="file" class="form-control" (change)="inputFileChange($event)" mdbInput/>
+      </form>
+      <a href="#" mdbBtn color="primary" mdbWavesEffect>Button</a> -->
+    <!-- </mdb-card-body>
+  </mdb-card> -->
+</div>

@@ -32,6 +32,8 @@ import { ContasPenhaService } from "./service/contas-penha.service";
 import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { Ng2OrderModule } from "ng2-order-pipe";
 import { NgxPaginationModule } from "ngx-pagination";
+import { HttpModule } from "@angular/http";
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { NgxPaginationModule } from "ngx-pagination";
     RelatorioFrancieleComponent,
     RelatorioDecoComponent,
     RelatorioPenhaComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { NgxPaginationModule } from "ngx-pagination";
     RouterModule.forRoot(appRoutes, { relativeLinkResolution: "legacy" }),
     FormsModule,
     HttpClientModule,
+    HttpModule,
     ReactiveFormsModule,
     CurrencyMaskModule,
     DataTablesModule,

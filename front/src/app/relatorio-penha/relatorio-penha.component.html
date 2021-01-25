@@ -176,13 +176,13 @@
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th class="text-center" scope="col" (click)="sort('descricao')">Conta&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('detalhe')">Detalhe&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('valor')">Valor&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('vencimento')">Vencimento&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('parcela')">Parcela&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('status')">Status&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col">Ações</th>
+              <th class="text-center" scope="col" (click)="sort('descricao')" style="background-color:#F8F8FF;">Conta&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('detalhe')" style="background-color:#F8F8FF;">Detalhe&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">Valor&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('vencimento')" style="background-color:#F8F8FF;">Vencimento&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('parcela')" style="background-color:#F8F8FF;">Parcela&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('status')" style="background-color:#F8F8FF;">Status&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">Ações</th>
             </tr>
           </thead>
           <tbody *ngFor="let contas of contasPenhaService.contas | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
@@ -223,7 +223,7 @@
       </div>
     </mdb-card-body>
     <div style="margin-top: -20px; margin-left: 22px;">
-      <span><strong>Valor Total:</strong></span> &nbsp; <span>R$</span>
+      <span><strong>Valor Total:</strong></span> &nbsp; <span>R$ 0,00</span>
     </div>
   </mdb-card>
 </div>

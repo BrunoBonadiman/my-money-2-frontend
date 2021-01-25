@@ -36,11 +36,10 @@
           <mdb-error *ngIf="password.errors.minlength">Digite pelo menos 4 caracteres.</mdb-error>
         </div>
       </div>
-      <div class="md-form mb-5">
+      <!-- <div class="md-form mb-5">
         <input class="form-control form-control-sm" type="file" name="urlImage" #urlImage="ngModel"
-          [(ngModel)]="userService.selectedUser.urlImage" required>
-          <!-- <labeL for="urlImage">Link Imagem</labeL> -->
-      </div>
+          [(ngModel)]="userService.selectedUser.urlImage">
+      </div> -->
 
       <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
         mdbWavesEffect type="submit">Cadastrar</button>

@@ -34,7 +34,11 @@ export class HomeComponent implements OnInit {
   valorPrincipalFranciele: void = this.recuperaValorTotalFranciele();
   valorPrincipalPenha: void = this.recuperaValorTotalPenha();
 
-  contas: Contas[] = [];
+  contas: Contas[];
+  contasBruno: ContasBruno[];
+  contasDeco: ContasDeco[];
+  contasFranciele: ContasFranciele[];
+  contasPenha: ContasPenha[];
 
   p: number = 1;
 
@@ -77,6 +81,7 @@ export class HomeComponent implements OnInit {
       return `${this.valorCalculado.toFixed(2)}`;
     });
   }
+
 
   recuperaValorTotal2() {
     let aux = 0;
@@ -140,13 +145,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.resetForm();
     this.refreshContas();
-    this.recuperaValorTotal();
-    this.recuperaValorTotalBruno();
-    this.recuperaValorTotalDeco();
-    this.recuperaValorTotalFranciele();
-    this.recuperaValorTotalPenha();
-
-    console.log(this.recuperaValorTotal());
   }
 
   cadastrarNovaConta(form: NgForm) {
