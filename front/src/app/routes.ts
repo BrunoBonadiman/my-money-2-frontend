@@ -10,6 +10,7 @@ import { RelatorioFrancieleComponent } from './relatorio-franciele/relatorio-fra
 import { RelatorioPenhaComponent } from './relatorio-penha/relatorio-penha.component';
 import { RelatorioDecoComponent } from './relatorio-deco/relatorio-deco.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { FooterComponent } from './footer/footer.component';
 
 export const appRoutes: Routes = [
   {
@@ -53,6 +54,10 @@ export const appRoutes: Routes = [
   {
     path: 'perfil',
     component: PerfilComponent,
+  },
+  {
+    path: 'footer',
+    component: FooterComponent,
   },
   {
     path: '',

@@ -90,8 +90,8 @@
         <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
           (click)="frame.show()"> Novo &nbsp; <mdb-icon fas icon="plus"></mdb-icon></button>
 
-        <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog"
-          aria-labelledby="myModalLabel" aria-hidden="true">
+        <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered lg modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header text-center">
@@ -176,16 +176,23 @@
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
-              <th class="text-center" scope="col" (click)="sort('descricao')" style="background-color:#F8F8FF;">Conta&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('detalhe')" style="background-color:#F8F8FF;">Detalhe&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">Valor&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('vencimento')" style="background-color:#F8F8FF;">Vencimento&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('parcela')" style="background-color:#F8F8FF;">Parcela&nbsp;<i class="fa fa-sort"></i></th>
-              <th class="text-center" scope="col" (click)="sort('status')" style="background-color:#F8F8FF;">Status&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('descricao')" style="background-color:#F8F8FF;">
+                Conta&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('detalhe')" style="background-color:#F8F8FF;">
+                Detalhe&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">
+                Valor&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('vencimento')" style="background-color:#F8F8FF;">
+                Vencimento&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('parcela')" style="background-color:#F8F8FF;">
+                Parcela&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('status')" style="background-color:#F8F8FF;">
+                Status&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" style="background-color:#F8F8FF;">Ações</th>
             </tr>
           </thead>
-          <tbody *ngFor="let contas of contasPenhaService.contas | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tbody
+            *ngFor="let contas of contasPenhaService.contas | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
             <tr>
               <td class="text-center">
                 {{contas.descricao}}</td>
@@ -194,9 +201,11 @@
               <td class="text-center">
                 {{contas.valor | currency: 'BRL'}}</td>
               <td class="text-center">
-                {{contas.vencimento | date}}</td>
+                {{contas.vencimento | date: 'dd/MM/yyyy'}}</td>
               <td class="text-center">
-                <span><mdb-badge warning="true">{{contas.parcela}}</mdb-badge></span>
+                <span>
+                  <mdb-badge warning="true">{{contas.parcela}}</mdb-badge>
+                </span>
               </td>
               <td class="text-center">
                 <span class="badge {{contas.status == 'Pendente' ? 'bg-danger' : 'bg-success'}}"
@@ -227,3 +236,4 @@
     </div>
   </mdb-card>
 </div>
+

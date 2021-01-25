@@ -34,6 +34,7 @@ import { Ng2OrderModule } from "ng2-order-pipe";
 import { NgxPaginationModule } from "ngx-pagination";
 import { HttpModule } from "@angular/http";
 import { PerfilComponent } from './perfil/perfil.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     RelatorioDecoComponent,
     RelatorioPenhaComponent,
     PerfilComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
