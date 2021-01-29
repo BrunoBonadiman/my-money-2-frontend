@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { User } from './user.model';
 import { Observable } from 'rxjs';
 
@@ -74,7 +73,7 @@ export class UserService {
   }
 
   adicionarFoto(imagem:FormData):Observable<any> {
-    return this.http.post(`${apiUrl}/usuarios/imagem`,imagem,{
+    return this.http.post(`${apiUrl}` + '/usuarios/imagem',imagem,{
     });
   }
 }
