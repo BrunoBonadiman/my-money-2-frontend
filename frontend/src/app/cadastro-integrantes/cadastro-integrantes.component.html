@@ -1,0 +1,186 @@
+<app-sidebar></app-sidebar>
+
+<div class="container-fluid">
+  <div [hidden]="!exibirFormularioEdicao">
+    <mdb-card style="margin-top:20px;">
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <mdb-card-header>
+        <h4>Atualizar Dados</h4>
+      </mdb-card-header>
+      <mdb-card-body>
+        <form #integrantesForm="ngForm" (ngSubmit)="onSubmit(integrantesForm)">
+          <div class="form-row">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="integrantesService.selectIntegrante._id">
+            <div class="form-group col-md-6">
+              <label for="integrante1">Integrante 01:</label>
+              <input type="text" name="integrante1" #name="ngModel"
+                [(ngModel)]="integrantesService.selectIntegrante.integrante1" required class="form-control"
+                autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="integrante2">Integrante 02:</label>
+              <input type="text" name="integrante2" #name="ngModel"
+                [(ngModel)]="integrantesService.selectIntegrante.integrante2" required class="form-control"
+                autocomplete="off">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="integrante3">Integrante 03:</label>
+              <input type="text" name="integrante3" #name="ngModel"
+                [(ngModel)]="integrantesService.selectIntegrante.integrante3" required class="form-control"
+                autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="integrante4">Integrante 04:</label>
+              <input type="text" name="integrante4" #name="ngModel"
+                [(ngModel)]="integrantesService.selectIntegrante.integrante4" required class="form-control"
+                autocomplete="off">
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="input-field col s12">
+              <button mdbBtn type="button" color="light" mdbWavesEffect type="button"
+                (click)="resetForm(integrantesForm)">Limpar
+                Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+              <button mdbBtn type="button" color="primary" mdbWavesEffect type="submit"
+                [disabled]="!integrantesForm.valid">Atualizar &nbsp;
+                <mdb-icon fas icon="sync-alt"></mdb-icon></button>
+              <button mdbBtn type="button" color="amber" mdbWavesEffect type="button"
+                (click)="onClose()">fechar &nbsp;
+                <mdb-icon fas icon="times"></mdb-icon></button>
+            </div>
+          </div>
+        </form>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+  <hr [hidden]="!exibirFormularioEdicao">
+  <mdb-card style="margin-top:20px;">
+    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+      <a>
+        <div class="mask"></div>
+      </a>
+    </div>
+    <mdb-card-header>
+      <h4>Resultados</h4>
+    </mdb-card-header>
+    <mdb-card-body>
+      <div class="row" style="margin-left:-5px;">
+        <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
+          (click)="frame.show()"> Novo &nbsp; <mdb-icon fas icon="plus"></mdb-icon></button>
+
+        <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered lg modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Cadastro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-3">
+                <form #integrantesForm="ngForm" (ngSubmit)="onSubmit(integrantesForm)">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="integrante1">Integrante #1:</label>
+                      <input type="text" name="integrante1" #name="ngModel"
+                        [(ngModel)]="integrantesService.selectIntegrante.integrante1" required class="form-control"
+                        autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="integrante2">Integrante #2:</label>
+                      <input type="text" name="integrante2" #name="ngModel"
+                        [(ngModel)]="integrantesService.selectIntegrante.integrante2" required class="form-control"
+                        autocomplete="off">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="integrante3">Integrante #3:</label>
+                      <input type="text" name="integrante3" #name="ngModel"
+                        [(ngModel)]="integrantesService.selectIntegrante.integrante3" required class="form-control"
+                        autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="integrante4">Integrante #4:</label>
+                      <input type="text" name="integrante4" #name="ngModel"
+                        [(ngModel)]="integrantesService.selectIntegrante.integrante4" required class="form-control"
+                        autocomplete="off">
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <button mdbBtn type="button" color="light" mdbWavesEffect type="button"
+                        (click)="resetForm(integrantesForm)">Limpar
+                        Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+                      <button mdbBtn type="button" color="primary" mdbWavesEffect type="button"
+                        [disabled]="!integrantesForm.valid" (click)="cadastrarNovaConta(integrantesForm)">Cadastrar
+                        &nbsp;
+                        <i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
+                Ações</th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
+                Integrante #1</th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
+                Integrante #2</th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
+                Integrante #3</th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
+                Integrante #4</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let registro of this.integrantes">
+            <tr>
+              <td class="text-center">
+                <div class="btn-group" mdbDropdown>
+                  <button mdbDropdownToggle type="button" mdbBtn color="default" size="sm" class="dropdown-toggle waves-light"
+                    mdbWavesEffect>
+                    <mdb-icon fas icon="cog"></mdb-icon>
+                  </button>
+
+                  <div class="dropdown-menu dropdown-default">
+                    <a class="dropdown-item" (click)="onEdit(registro)">
+                      <i class="fa fa-edit">&nbsp;&nbsp;</i><span>Editar</span>
+                    </a>
+                    <a class="dropdown-item" (click)="onDelete(registro._id,integrantesForm)">
+                      <i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;<span>Deletar</span>
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                {{registro.integrante1}}</td>
+              <td class="text-center">
+                {{registro.integrante2}}</td>
+              <td class="text-center">
+                {{registro.integrante3}}</td>
+              <td class="text-center">
+                {{registro.integrante4}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+</div>

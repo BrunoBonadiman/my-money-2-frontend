@@ -1,0 +1,240 @@
+<app-sidebar></app-sidebar>
+
+<div class="container-fluid">
+  <div [hidden]="!exibirFormularioEdicao">
+    <mdb-card style="margin-top:20px;">
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <mdb-card-header>
+        <h4>Atualizar Dados</h4>
+      </mdb-card-header>
+      <mdb-card-body>
+        <form #contasPenhaForm="ngForm" (ngSubmit)="onSubmit(contasPenhaForm)">
+          <div class="form-row">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="contasPenhaService.selectContaPenha._id">
+            <div class="form-group col-md-6">
+              <label for="descricao">Conta:</label>
+              <input type="text" name="descricao" #name="ngModel"
+                [(ngModel)]="contasPenhaService.selectContaPenha.descricao" required class="form-control"
+                autocomplete="off">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="detalhe">Detalhe:</label>
+              <input type="text" name="detalhe" #name="ngModel"
+                [(ngModel)]="contasPenhaService.selectContaPenha.detalhe" required class="form-control"
+                autocomplete="off">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="valor">Valor:</label>
+              <input name="valor" type="text" #name="ngModel" [(ngModel)]="contasPenhaService.selectContaPenha.valor"
+                class="form-control" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" currencyMask
+                autocomplete="off">
+            </div>
+            <div class="form-group col-md-3">
+              <label for=" vencimento">Vencimento:</label>
+              <input type="date" name="vencimento" #name="ngModel"
+                [(ngModel)]="contasPenhaService.selectContaPenha.vencimento" class="form-control" autocomplete="off">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="parcela">Parcela:</label>
+              <input type="text" id="parcela" name="parcela" #name="ngModel"
+                [(ngModel)]="contasPenhaService.selectContaPenha.parcela" required class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="status">Status:</label>
+              <select id="status" name="status" #name="ngModel" [(ngModel)]="contasPenhaService.selectContaPenha.status"
+                required class="form-control">
+                <option selected disabled>Selecione...</option>
+                <option>Pago</option>
+                <option>Pendente</option>
+              </select>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="input-field col s12">
+              <button mdbBtn type="button" color="light" mdbWavesEffect type="button"
+                (click)="resetForm(contasPenhaForm)">Limpar
+                Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+              <button mdbBtn type="button" color="primary" mdbWavesEffect type="submit"
+                [disabled]="!contasPenhaForm.valid">Atualizar &nbsp;
+                <mdb-icon fas icon="sync-alt"></mdb-icon></button>
+              <button mdbBtn type="button" color="amber" mdbWavesEffect type="button"
+                (click)="onClose()">fechar &nbsp;
+                <mdb-icon fas icon="times"></mdb-icon></button>
+            </div>
+          </div>
+        </form>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+  <hr [hidden]="!exibirFormularioEdicao">
+  <mdb-card style="margin-top:20px;">
+    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+      <a>
+        <div class="mask"></div>
+      </a>
+    </div>
+    <mdb-card-header>
+      <h4>Resultados</h4>
+    </mdb-card-header>
+    <mdb-card-body>
+      <div class="row" style="margin-left:-5px;">
+        <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
+          (click)="frame.show()"> Novo &nbsp; <mdb-icon fas icon="plus"></mdb-icon></button>
+
+        <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered lg modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Cadastro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-3">
+                <form #contasPenhaForm="ngForm" (ngSubmit)="onSubmit(contasPenhaForm)">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="descricao">Conta:</label>
+                      <input type="text" name="descricao" #name="ngModel"
+                        [(ngModel)]="contasPenhaService.selectContaPenha.descricao" required class="form-control"
+                        autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="detalhe">Detalhe:</label>
+                      <input type="text" name="detalhe" #name="ngModel"
+                        [(ngModel)]="contasPenhaService.selectContaPenha.detalhe" required class="form-control"
+                        autocomplete="off">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-3">
+                      <label for="valor">Valor:</label>
+                      <input name="valor" type="text" #name="ngModel"
+                        [(ngModel)]="contasPenhaService.selectContaPenha.valor" class="form-control"
+                        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" currencyMask autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for=" vencimento">Vencimento:</label>
+                      <input type="date" name="vencimento" #name="ngModel"
+                        [(ngModel)]="contasPenhaService.selectContaPenha.vencimento" class="form-control"
+                        autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="parcela">Parcela:</label>
+                      <input type="text" id="parcela" name="parcela" #name="ngModel"
+                        [(ngModel)]="contasPenhaService.selectContaPenha.parcela" required class="form-control">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="status">Status:</label>
+                      <select id="status" name="status" #name="ngModel"
+                        [(ngModel)]="contasPenhaService.selectContaPenha.status" required class="form-control">
+                        <option selected disabled>Selecione...</option>
+                        <option>Pago</option>
+                        <option>Pendente</option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <button mdbBtn type="button" color="light" mdbWavesEffect type="button"
+                        (click)="resetForm(contasPenhaForm)">Limpar
+                        Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+                      <button mdbBtn type="button" color="primary" mdbWavesEffect type="button"
+                        [disabled]="!contasPenhaForm.valid" (click)="cadastrarNovaConta(contasPenhaForm)">Cadastrar
+                        &nbsp;
+                        <i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button mdbBtn type="button" color="dark-green" mdbWavesEffect (click)="exportAsXLSX()"
+          style="margin-left: 7px;">
+          Exportar Excel &nbsp; <mdb-icon fas icon="file-excel"></mdb-icon>
+        </button>
+        <button mdbBtn type="button" color="light-green" mdbWavesEffect (click)="recuperaValorTotal()"
+          style="margin-left: 7px;">
+          Exibir Valor Total &nbsp; <mdb-icon fas icon="dollar-sign"></mdb-icon>
+        </button>
+      </div>
+      <br>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;width:10%;">Ações</th>
+              <th class="text-center" scope="col" (click)="sort('descricao')" style="background-color:#F8F8FF;">
+                Conta&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('detalhe')" style="background-color:#F8F8FF;">
+                Detalhe&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">
+                Valor&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('vencimento')" style="background-color:#F8F8FF;">
+                Vencimento&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('parcela')" style="background-color:#F8F8FF;">
+                Parcela&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('status')" style="background-color:#F8F8FF;">
+                Status&nbsp;<i class="fa fa-sort"></i></th>
+            </tr>
+          </thead>
+          <tbody
+            *ngFor="let contas of this.contasPenha | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+            <tr>
+              <td class="text-center">
+                <div class="btn-group" mdbDropdown>
+                  <button mdbDropdownToggle type="button" mdbBtn color="default" size="sm"
+                    class="dropdown-toggle waves-light" mdbWavesEffect>
+                    <mdb-icon fas icon="cog"></mdb-icon>
+                  </button>
+
+                  <div class="dropdown-menu dropdown-default">
+                    <a class="dropdown-item" (click)="onEdit(contas)">
+                      <i class="fa fa-edit">&nbsp;&nbsp;</i><span>Editar</span>
+                    </a>
+                    <a class="dropdown-item" (click)="onDelete(contas._id,contasPenhaForm)">
+                      <i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;<span>Deletar</span>
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                {{contas.descricao}}</td>
+              <td class="text-center">
+                {{contas.detalhe}}</td>
+              <td class="text-center">
+                {{contas.valor | currency: 'BRL'}}</td>
+              <td class="text-center">
+                {{contas.vencimento | date: 'dd/MM/yyyy'}}</td>
+              <td class="text-center">
+                <span>
+                  <mdb-badge warning="true">{{contas.parcela}}</mdb-badge>
+                </span>
+              </td>
+              <td class="text-center">
+                <span class="badge {{contas.status == 'Pendente' ? 'bg-danger' : 'bg-success'}}"
+                  style="color:white;">{{contas.status}}</span>
+              </td>
+            </tr>
+          </tbody>
+          <div class="float-left" style="margin-top:10px; margin-left: -45px;">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </table>
+      </div>
+    </mdb-card-body>
+    <div style="margin-top: -20px; margin-left: 22px;">
+      <span><strong>Valor Total:</strong></span> &nbsp; <span>R$ 0,00</span>
+    </div>
+  </mdb-card>
+</div>

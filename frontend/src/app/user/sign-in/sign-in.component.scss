@@ -1,0 +1,24 @@
+form .validation {
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+
+form input[type=text].invalid-textbox,
+form input[type=password].invalid-textbox {
+  border: 2px solid #ed5558;
+}
+
+form label.validation-message {
+  color: #ed5558;
+}
+
+// button:hover{
+//   color: #255784;
+//   background: #2196f3;
+//   box-shadow: 0 0 10px  #2196f3, 0 0 40px  #2196f3, 0 0 80px  #2196f3;
+//   transition-delay: 1s;
+// }
+
+// mdb-card{
+//   background-color: rgb(22, 22, 22);
+// }
