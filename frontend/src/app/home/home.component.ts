@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Location } from '@angular/common';
 import { NgForm } from "@angular/forms";
 import { Contas } from "../model/contas-model";
 import { ContasService } from "../service/contas.service";
@@ -53,7 +54,8 @@ export class HomeComponent implements OnInit {
     public contasFrancieleService: ContasFrancieleService,
     public contasPenhaService: ContasPenhaService,
     private excelService: ExcelService,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) { }
 
   key: string = 'descricao';
@@ -165,6 +167,7 @@ export class HomeComponent implements OnInit {
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
       this.exibirFormularioEdicao = false;
+      location.reload();
     });
   }
 
@@ -218,6 +221,7 @@ export class HomeComponent implements OnInit {
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
         });
       }
+      location.reload();
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ContasFranciele } from '../model/contas-franciele-model';
@@ -24,7 +25,8 @@ export class RelatorioFrancieleComponent implements OnInit {
   constructor(
     public contasFrancieleService: ContasFrancieleService,
     private excelService: ExcelService,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) {}
 
   key: string = 'descricao';
@@ -95,6 +97,7 @@ export class RelatorioFrancieleComponent implements OnInit {
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
       this.exibirFormularioEdicao = false;
+      location.reload();
     });
   }
 
@@ -149,6 +152,7 @@ export class RelatorioFrancieleComponent implements OnInit {
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
         });
       }
+      location.reload();
     });
   }
 

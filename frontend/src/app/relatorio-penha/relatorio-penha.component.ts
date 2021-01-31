@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ContasPenhaService } from '../service/contas-penha.service';
 import { ExcelService } from '../service/excel.service';
 import Swal from 'sweetalert2';
@@ -24,7 +25,8 @@ export class RelatorioPenhaComponent implements OnInit {
   constructor(
     public contasPenhaService: ContasPenhaService,
     private excelService: ExcelService,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) { }
 
   key: string = 'descricao';
@@ -95,6 +97,7 @@ export class RelatorioPenhaComponent implements OnInit {
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
       this.exibirFormularioEdicao = false;
+      location.reload();
     });
   }
 
@@ -148,6 +151,7 @@ export class RelatorioPenhaComponent implements OnInit {
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
         });
       }
+      location.reload();
     });
   }
 

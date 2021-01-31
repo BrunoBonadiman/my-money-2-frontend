@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ContasDecoService } from '../service/contas-deco.service';
 import { ExcelService } from '../service/excel.service';
 import Swal from 'sweetalert2';
@@ -25,7 +26,8 @@ export class RelatorioDecoComponent implements OnInit {
   constructor(
     public contasDecoService: ContasDecoService,
     private excelService: ExcelService,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) {}
 
   key: string = 'descricao';
@@ -95,6 +97,7 @@ export class RelatorioDecoComponent implements OnInit {
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
       this.exibirFormularioEdicao = false;
+      location.reload();
     });
   }
 
@@ -148,6 +151,7 @@ export class RelatorioDecoComponent implements OnInit {
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
         });
       }
+      location.reload();
     });
   }
 

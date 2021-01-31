@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { ContasBrunoService } from '../service/contas-bruno.service';
 import { ExcelService } from '../service/excel.service';
@@ -25,7 +26,8 @@ export class RelatorioBrunoComponent implements OnInit {
   constructor(
     public contasBrunoService: ContasBrunoService,
     private excelService: ExcelService,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) {}
 
   key: string = 'descricao';
@@ -96,6 +98,7 @@ export class RelatorioBrunoComponent implements OnInit {
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
       this.exibirFormularioEdicao = false;
+      location.reload();
     });
   }
 
@@ -150,6 +153,7 @@ export class RelatorioBrunoComponent implements OnInit {
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
         });
       }
+      location.reload();
     });
   }
 
