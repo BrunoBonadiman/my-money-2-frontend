@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Location } from '@angular/common';
+import { Location } from "@angular/common";
 import { NgForm } from "@angular/forms";
 import { Contas } from "../model/contas-model";
 import { ContasService } from "../service/contas.service";
@@ -20,23 +20,20 @@ import { User } from "../shared/user.model";
   selector: "app-home",
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
-  providers: [ContasService, ExcelService, UserService],
+  providers: [
+    ContasService,
+    ExcelService,
+    UserService,
+    ContasBrunoService,
+    ContasFrancieleService,
+    ContasDecoService,
+    ContasPenhaService,
+  ],
 })
 export class HomeComponent implements OnInit {
-
   exibirFormularioEdicao = false;
 
   valorCalculado = 0;
-  valorBruno = 0;
-  valorDeco = 0;
-  valorFranciele = 0;
-  valorPenha = 0;
-
-  // valorPrincipal: void = this.recuperaValorTotal();
-  valorPrincipalBruno: void = this.recuperaValorTotalBruno();
-  valorPrincipalDeco: void = this.recuperaValorTotalDeco();
-  valorPrincipalFranciele: void = this.recuperaValorTotalFranciele();
-  valorPrincipalPenha: void = this.recuperaValorTotalPenha();
 
   user: User;
   contas: Contas[] = [];
@@ -56,9 +53,9 @@ export class HomeComponent implements OnInit {
     private excelService: ExcelService,
     private userService: UserService,
     private location: Location
-  ) { }
+  ) {}
 
-  key: string = 'descricao';
+  key: string = "descricao";
   reverse: boolean = false;
   sort(key) {
     this.key = key;
@@ -78,68 +75,64 @@ export class HomeComponent implements OnInit {
     }
     return array;
   }
-  recuperaValorTotal2() {
-    let aux = 0;
+
+  recuperaValorTotal() {
+    var aux = 0;
     this.contasService.getContas().subscribe((res: Contas[]) => {
       res.forEach(function (item) {
         aux += parseFloat(item.valorTotal.toString());
       });
       this.valorCalculado = aux;
       Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-      //return `${this.valorCalculado.toFixed(2)}`;
     });
+  }
+
+  recuperaValorTotal2() {
+    let aux = 0;
+    for (let conta of this.contas) {
+      aux += parseFloat(conta.valorTotal.toString());
+    }
+    return aux.toFixed(2);
   }
 
   recuperaValorTotalBruno() {
     let aux = 0;
-    this.contasBrunoService.getContasBruno().subscribe((res) => {
-      res.forEach(function (item) {
-        aux += parseFloat(item.valor.toString());
-      });
-      this.valorBruno = aux;
-      return `${this.valorBruno.toFixed(2)}`;
-    });
-    //Swal.fire('Valor Total: ' + 'R$' + this.valorBruno.toFixed(2));
+    for (let conta of this.contasBruno) {
+      aux += parseFloat(conta.valor.toString());
+    }
+    return aux.toFixed(2);
   }
 
   recuperaValorTotalDeco() {
     let aux = 0;
-    this.contasDecoService.getContasDeco().subscribe((res) => {
-      res.forEach(function (item) {
-        aux += parseFloat(item.valor.toString());
-      });
-      this.valorDeco = aux;
-      return `${this.valorDeco.toFixed(2)}`;
-    });
-    //Swal.fire('Valor Total: ' + 'R$' + this.valorDeco.toFixed(2));
+    for (let conta of this.contasDeco) {
+      aux += parseFloat(conta.valor.toString());
+    }
+    return aux.toFixed(2);
   }
   recuperaValorTotalFranciele() {
     let aux = 0;
-    this.contasFrancieleService.getContasFranciele().subscribe((res) => {
-      res.forEach(function (item) {
-        aux += parseFloat(item.valor.toString());
-      });
-      this.valorFranciele = aux;
-      return `${this.valorFranciele.toFixed(2)}`;
-    });
-    //Swal.fire('Valor Total: ' + 'R$' + this.valorFranciele.toFixed(2));
+    for (let conta of this.contasFranciele) {
+      aux += parseFloat(conta.valor.toString());
+    }
+    return aux.toFixed(2);
   }
 
   recuperaValorTotalPenha() {
     let aux = 0;
-    this.contasPenhaService.getContasPenha().subscribe((res) => {
-      res.forEach(function (item) {
-        aux += parseFloat(item.valor.toString());
-      });
-      this.valorPenha = aux;
-      return `${this.valorPenha.toFixed(2)}`;
-    });
-    //Swal.fire('Valor Total: ' + 'R$' + this.valorPenha.toFixed(2));
+    for (let conta of this.contasPenha) {
+      aux += parseFloat(conta.valor.toString());
+    }
+    return aux.toFixed(2);
   }
 
   ngOnInit() {
     this.resetForm();
     this.refreshContas();
+    this.listarContasBruno();
+    this.listarContasDeco();
+    this.listarContasFranciele();
+    this.listarContasPenha();
   }
 
   cadastrarNovaConta(form: NgForm) {
@@ -176,25 +169,51 @@ export class HomeComponent implements OnInit {
   }
 
   refreshContas() {
-    this.userService.getUserProfile().subscribe((usuario:any) => {
+    this.userService.getUserProfile().subscribe((usuario: any) => {
       this.user = usuario as User;
       usuario.user.fullName;
 
       this.contasService.getContas().subscribe((res: Contas[]) => {
-        res.filter(x => !this.contas.map(x => x._id).includes(x._id)).forEach(conta => {
-          this.userService.getUser(conta.user).subscribe((user: any) => {
-            conta.userName = user.user.fullName;
-            if(conta.userName == usuario.user.fullName){
-              this.contas.push(conta);
-              return conta;
-            }else{
-              (err) => {
-                console.log(err);
+        res
+          .filter((x) => !this.contas.map((x) => x._id).includes(x._id))
+          .forEach((conta) => {
+            this.userService.getUser(conta.user).subscribe((user: any) => {
+              conta.userName = user.user.fullName;
+              if (conta.userName == usuario.user.fullName) {
+                this.contas.push(conta);
+                return conta;
+              } else {
+                (err) => {
+                  console.log(err);
+                };
               }
-            }
+            });
           });
-        });
       });
+    });
+  }
+
+  listarContasBruno(){
+    this.contasBrunoService.getContasBruno().subscribe((res) => {
+      this.contasBruno = res as ContasBruno[];
+    });
+  }
+
+  listarContasDeco(){
+    this.contasDecoService.getContasDeco().subscribe((res) => {
+      this.contasDeco = res as ContasDeco[];
+    });
+  }
+
+  listarContasFranciele(){
+    this.contasFrancieleService.getContasFranciele().subscribe((res) => {
+      this.contasFranciele = res as ContasFranciele[];
+    });
+  }
+
+  listarContasPenha(){
+    this.contasPenhaService.getContasPenha().subscribe((res) => {
+      this.contasPenha = res as ContasPenha[];
     });
   }
 

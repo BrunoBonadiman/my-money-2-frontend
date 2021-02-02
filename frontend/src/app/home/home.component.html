@@ -5,7 +5,7 @@
     <div class="col-lg-3 col-6">
       <div class="small-box bg-info">
         <div class="inner">
-          <h3> R$ 0,00 </h3>
+          <h3> R$ {{ recuperaValorTotalBruno()}} </h3>
           <p>Bruno</p>
         </div>
         <div class="icon">
@@ -18,7 +18,7 @@
     <div class="col-lg-3 col-6">
       <div class="small-box bg-success">
         <div class="inner">
-          <h3> R$ 0,00 <sup style="font-size: 20px"></sup></h3>
+          <h3> R$ {{recuperaValorTotalFranciele()}} <sup style="font-size: 20px"></sup></h3>
           <p>Franciele</p>
         </div>
         <div class="icon">
@@ -31,7 +31,7 @@
     <div class="col-lg-3 col-6">
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>R$ 0,00</h3>
+          <h3>R$ {{recuperaValorTotalDeco()}}</h3>
           <p>José Antônio</p>
         </div>
         <div class="icon">
@@ -44,7 +44,7 @@
     <div class="col-lg-3 col-6">
       <div class="small-box bg-danger">
         <div class="inner">
-          <h3>R$ 0,00</h3>
+          <h3>R$ {{recuperaValorTotalPenha()}}</h3>
           <p>Penha</p>
         </div>
         <div class="icon">
@@ -191,7 +191,7 @@
           style="margin-left: 5px;">
           Exportar Excel &nbsp; <mdb-icon fas icon="file-excel"></mdb-icon>
         </button>
-        <button mdbBtn type="button" color="light-green" mdbWavesEffect (click)="recuperaValorTotal2()"
+        <button mdbBtn type="button" color="light-green" mdbWavesEffect (click)="recuperaValorTotal()"
           style="margin-left: 5px;">
           Exibir Valor Total &nbsp; <mdb-icon fas icon="dollar-sign"></mdb-icon>
         </button>
@@ -251,7 +251,7 @@
       </div>
     </mdb-card-body>
     <div style="margin-top: -20px; margin-left: 22px;">
-      <span><strong>Valor Total:</strong></span> &nbsp; <span>R$ 0,00</span>
+      <span><strong>Valor Total:</strong></span> &nbsp; <span>R$ {{ recuperaValorTotal2()}}</span>
     </div>
   </mdb-card>
 </div>

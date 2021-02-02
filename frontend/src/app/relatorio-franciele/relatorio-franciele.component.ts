@@ -61,7 +61,14 @@ export class RelatorioFrancieleComponent implements OnInit {
       this.valorCalculado = aux;
       Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
     });
-    //return this.valorCalculado.toFixed(2);
+  }
+
+  recuperarValorTotal2(){
+    let aux = 0;
+    for (let conta of this.contasFranciele) {
+      aux += parseFloat(conta.valor.toString());
+    }
+    return aux.toFixed(2);
   }
 
   ngOnInit() {

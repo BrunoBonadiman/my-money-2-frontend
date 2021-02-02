@@ -58,15 +58,13 @@
           <hr>
           <div class="row">
             <div class="input-field col s12">
-              <button mdbBtn type="button" color="default" outline="true" mdbWavesEffect type="button"
+              <button mdbBtn type="button" color="light" mdbWavesEffect type="button"
                 (click)="resetForm(contasBrunoForm)">Limpar
                 Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
-              &nbsp;
-              <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect type="submit"
+              <button mdbBtn type="button" color="primary" mdbWavesEffect type="submit"
                 [disabled]="!contasBrunoForm.valid">Atualizar &nbsp;
                 <mdb-icon fas icon="sync-alt"></mdb-icon></button>
-              &nbsp;
-              <button mdbBtn type="button" color="secondary" outline="true" mdbWavesEffect type="button"
+              <button mdbBtn type="button" color="amber" mdbWavesEffect type="button"
                 (click)="onClose()">fechar &nbsp;
                 <mdb-icon fas icon="times"></mdb-icon></button>
             </div>
@@ -147,11 +145,10 @@
                   <hr>
                   <div class="row">
                     <div class="input-field col s12">
-                      <button mdbBtn type="button" color="default" outline="true" mdbWavesEffect type="button"
+                      <button mdbBtn type="button" color="light" mdbWavesEffect type="button"
                         (click)="resetForm(contasBrunoForm)">Limpar
                         Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
-                      &nbsp;
-                      <button mdbBtn type="button" color="primary" outline="true" mdbWavesEffect type="button"
+                      <button mdbBtn type="button" color="primary" mdbWavesEffect type="button"
                         [disabled]="!contasBrunoForm.valid" (click)="cadastrarNovaConta(contasBrunoForm)">Cadastrar
                         &nbsp;
                         <i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -237,7 +234,7 @@
       </div>
     </mdb-card-body>
     <div style="margin-top: -20px; margin-left: 22px;">
-      <span><strong>Valor Total:</strong></span> &nbsp; <span>R$ 0,00</span>
+      <span><strong>Valor Total:</strong></span> &nbsp; <span>R$ {{recuperarValorTotal2()}}</span>
     </div>
   </mdb-card>
 </div>

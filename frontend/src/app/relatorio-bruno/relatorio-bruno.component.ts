@@ -46,7 +46,7 @@ export class RelatorioBrunoComponent implements OnInit {
         "Valor": conta.valor,
         "Vencimento": conta.vencimento,
         "Parcela": conta.parcela,
-        "status": conta.status,
+        "Status": conta.status,
       });
     }
     return array;
@@ -62,7 +62,14 @@ export class RelatorioBrunoComponent implements OnInit {
       this.valorCalculado = aux;
       Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
     });
-    //return this.valorCalculado.toFixed(2);
+  }
+
+  recuperarValorTotal2(){
+    let aux = 0;
+    for (let conta of this.contasBruno) {
+      aux += parseFloat(conta.valor.toString());
+    }
+    return aux.toFixed(2);
   }
 
   ngOnInit() {
