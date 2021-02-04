@@ -15,6 +15,8 @@ import { ContasFranciele } from "../model/contas-franciele-model";
 import { ContasPenha } from "../model/contas-penha-model";
 import { UserService } from "../shared/user.service";
 import { User } from "../shared/user.model";
+import { IntegrantesService } from "../service/integrantes.service";
+import { Integrantes } from "../model/integrantes-model";
 
 @Component({
   selector: "app-home",
@@ -28,6 +30,7 @@ import { User } from "../shared/user.model";
     ContasFrancieleService,
     ContasDecoService,
     ContasPenhaService,
+    IntegrantesService
   ],
 })
 export class HomeComponent implements OnInit {
@@ -36,6 +39,7 @@ export class HomeComponent implements OnInit {
   valorCalculado = 0;
 
   user: User;
+  integrante: Integrantes[] = [];
   contas: Contas[] = [];
   contasBruno: ContasBruno[];
   contasDeco: ContasDeco[];
@@ -50,6 +54,7 @@ export class HomeComponent implements OnInit {
     public contasDecoService: ContasDecoService,
     public contasFrancieleService: ContasFrancieleService,
     public contasPenhaService: ContasPenhaService,
+    public integrantesService: IntegrantesService,
     private excelService: ExcelService,
     private userService: UserService,
     private location: Location
@@ -110,6 +115,7 @@ export class HomeComponent implements OnInit {
     }
     return aux.toFixed(2);
   }
+
   recuperaValorTotalFranciele() {
     let aux = 0;
     for (let conta of this.contasFranciele) {
@@ -126,6 +132,14 @@ export class HomeComponent implements OnInit {
     return aux.toFixed(2);
   }
 
+  recuperaIntegrante1(){
+    let name = "";
+    for(let integrantes of this.integrante){
+      name = integrantes.integrante1;
+    }
+    return console.log(name);
+  }
+
   ngOnInit() {
     this.resetForm();
     this.refreshContas();
@@ -133,6 +147,7 @@ export class HomeComponent implements OnInit {
     this.listarContasDeco();
     this.listarContasFranciele();
     this.listarContasPenha();
+    this.listarIntegrantes();
   }
 
   cadastrarNovaConta(form: NgForm) {
@@ -190,6 +205,12 @@ export class HomeComponent implements OnInit {
             });
           });
       });
+    });
+  }
+
+  listarIntegrantes(){
+    this.integrantesService.getIntegrantes().subscribe((res) => {
+      this.integrante = res as Integrantes[];
     });
   }
 
