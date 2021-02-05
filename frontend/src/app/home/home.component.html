@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row" style="margin-top:15px;">
     <div class="col-lg-3 col-6">
-      <div class="small-box">
+      <div class="small-box bg-info">
         <div class="inner">
           <h4> R$ {{ recuperaValorTotalBruno()}} </h4>
           <p>Bruno</p>
@@ -11,12 +11,12 @@
         <div class="icon">
           <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <a [routerLink]="['/relatorio-bruno']" class="small-box-footer" style="background-color: #71BBFE; color:black;">Mais informações <i
+        <a [routerLink]="['/relatorio-bruno']" class="small-box-footer">Mais informações <i
             class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box">
+      <div class="small-box bg-success">
         <div class="inner">
           <h4> R$ {{recuperaValorTotalFranciele()}} <sup style="font-size: 20px"></sup></h4>
           <p>Franciele</p>
@@ -24,12 +24,12 @@
         <div class="icon">
           <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <a [routerLink]="['/relatorio-franciele']" class="small-box-footer" style="background-color:#DA7BFE; color:black;">Mais informações <i
+        <a [routerLink]="['/relatorio-franciele']" class="small-box-footer">Mais informações <i
             class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box">
+      <div class="small-box bg-warning">
         <div class="inner">
           <h4>R$ {{recuperaValorTotalDeco()}}</h4>
           <p>José Antônio</p>
@@ -37,12 +37,12 @@
         <div class="icon">
           <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <a [routerLink]="['/relatorio-deco']" class="small-box-footer" style="background-color:#10D500; color:black;">Mais informações <i
+        <a [routerLink]="['/relatorio-deco']" class="small-box-footer">Mais informações <i
             class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box">
+      <div class="small-box bg-danger">
         <div class="inner">
           <h4>R$ {{recuperaValorTotalPenha()}}</h4>
           <p>Penha</p>
@@ -50,7 +50,7 @@
         <div class="icon">
           <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <a [routerLink]="['/relatorio-penha']" class="small-box-footer" style="background-color:#F8DC12; color:black;">Mais informações <i
+        <a [routerLink]="['/relatorio-penha']" class="small-box-footer">Mais informações <i
             class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
