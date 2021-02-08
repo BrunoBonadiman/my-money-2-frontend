@@ -39,13 +39,6 @@ export class SidebarComponent implements OnInit {
         console.log(err);
       }
     );
-
-    this.integrantesService.getIntegrantes().subscribe(
-      (res) => {
-        this.integrantes = res;
-        this.integrantesDetails = this.integrantes;
-      }
-    );
   }
 
   onLogout() {

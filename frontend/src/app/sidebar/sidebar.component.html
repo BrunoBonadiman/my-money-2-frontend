@@ -13,11 +13,14 @@
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Relatórios<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-bruno']" mdbWavesEffect>Relatório Mensal Bruno</a>
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-franciele']" mdbWavesEffect>Relatório Mensal Franciele</a>
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-deco']" mdbWavesEffect>Relatório Mensal Deco</a>
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-penha']" mdbWavesEffect>Relatório Mensal Penha</a>
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-bruno']" mdbWavesEffect>Relatório Mensal Integrante #1</a>
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-franciele']" mdbWavesEffect>Relatório Mensal Integrante #2</a>
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-deco']" mdbWavesEffect>Relatório Mensal Integrante #3</a>
+          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-penha']" mdbWavesEffect>Relatório Mensal Integrante #4</a>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" [routerLink]="['/grafico']" mdbWavesEffect>Gráfico<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="userDetails">
