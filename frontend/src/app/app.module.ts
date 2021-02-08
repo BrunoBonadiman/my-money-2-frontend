@@ -37,6 +37,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FooterComponent } from './footer/footer.component';
 import { CadastroIntegrantesComponent } from './cadastro-integrantes/cadastro-integrantes.component';
 import { IntegrantesService } from "./service/integrantes.service";
+import { GraficoComponent } from './grafico/grafico.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { IntegrantesService } from "./service/integrantes.service";
     PerfilComponent,
     FooterComponent,
     CadastroIntegrantesComponent,
+    GraficoComponent
   ],
   imports: [
     BrowserModule,

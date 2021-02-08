@@ -12,6 +12,7 @@ import { RelatorioDecoComponent } from './relatorio-deco/relatorio-deco.componen
 import { PerfilComponent } from './perfil/perfil.component';
 import { FooterComponent } from './footer/footer.component';
 import { CadastroIntegrantesComponent } from './cadastro-integrantes/cadastro-integrantes.component';
+import { GraficoComponent } from './grafico/grafico.component';
 
 export const appRoutes: Routes = [
   {
@@ -63,6 +64,10 @@ export const appRoutes: Routes = [
   {
     path: 'integrantes',
     component: CadastroIntegrantesComponent
+  },
+  {
+    path: 'grafico',
+    component: GraficoComponent
   },
   {
     path: '',

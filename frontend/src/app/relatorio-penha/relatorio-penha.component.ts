@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { ContasPenhaService } from '../service/contas-penha.service';
 import { ExcelService } from '../service/excel.service';
 import Swal from 'sweetalert2';
@@ -26,7 +27,8 @@ export class RelatorioPenhaComponent implements OnInit {
     public contasPenhaService: ContasPenhaService,
     private excelService: ExcelService,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   key: string = 'descricao';
@@ -52,17 +54,17 @@ export class RelatorioPenhaComponent implements OnInit {
     return array;
   }
 
-  recuperaValorTotal() {
-    var aux = 0;
-    this.contasPenhaService.getContasPenha().subscribe((res) => {
-      this.contasPenha = res as ContasPenha[];
-      res.forEach(function (item) {
-        aux += parseFloat(item.valor.toString());
-      });
-      this.valorCalculado = aux;
-      Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-    });
-  }
+  // recuperaValorTotal() {
+  //   var aux = 0;
+  //   this.contasPenhaService.getContasPenha().subscribe((res) => {
+  //     this.contasPenha = res as ContasPenha[];
+  //     res.forEach(function (item) {
+  //       aux += parseFloat(item.valor.toString());
+  //     });
+  //     this.valorCalculado = aux;
+  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
+  //   });
+  // }
 
   recuperarValorTotal2(){
     let aux = 0;
@@ -167,5 +169,9 @@ export class RelatorioPenhaComponent implements OnInit {
       this.recuperarDadosTabela(),
       "Despesas_Penha"
     );
+  }
+
+  voltarParaTelaInicial(): void {
+    this.router.navigate(['/dashboard']);
   }
 }

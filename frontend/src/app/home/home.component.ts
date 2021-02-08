@@ -81,16 +81,16 @@ export class HomeComponent implements OnInit {
     return array;
   }
 
-  recuperaValorTotal() {
-    var aux = 0;
-    this.contasService.getContas().subscribe((res: Contas[]) => {
-      res.forEach(function (item) {
-        aux += parseFloat(item.valorTotal.toString());
-      });
-      this.valorCalculado = aux;
-      Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-    });
-  }
+  // recuperaValorTotal() {
+  //   var aux = 0;
+  //   this.contasService.getContas().subscribe((res: Contas[]) => {
+  //     res.forEach(function (item) {
+  //       aux += parseFloat(item.valorTotal.toString());
+  //     });
+  //     this.valorCalculado = aux;
+  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
+  //   });
+  // }
 
   recuperaValorTotal2() {
     let aux = 0;
@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
     return aux.toFixed(2);
   }
 
-  recuperaValorTotalBruno() {
+   recuperaValorTotalBruno() {
     let aux = 0;
     for (let conta of this.contasBruno) {
       aux += parseFloat(conta.valor.toString());

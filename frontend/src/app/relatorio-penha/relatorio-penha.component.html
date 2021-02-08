@@ -86,7 +86,7 @@
     <mdb-card-body>
       <div class="row" style="margin-left:-5px;">
         <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
-          (click)="frame.show()"> Novo &nbsp; <mdb-icon fas icon="plus"></mdb-icon></button>
+          (click)="frame.show()"> <mdb-icon fas icon="plus"></mdb-icon>&nbsp; Novo </button>
 
         <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
@@ -161,11 +161,11 @@
         </div>
         <button mdbBtn type="button" color="dark-green" mdbWavesEffect (click)="exportAsXLSX()"
           style="margin-left: 7px;">
-          Exportar Excel &nbsp; <mdb-icon fas icon="file-excel"></mdb-icon>
+          <mdb-icon fas icon="file-excel"></mdb-icon> &nbsp; Exportar Excel
         </button>
-        <button mdbBtn type="button" color="light-green" mdbWavesEffect (click)="recuperaValorTotal()"
+        <button mdbBtn type="button" color="light" mdbWavesEffect (click)="voltarParaTelaInicial()"
           style="margin-left: 7px;">
-          Exibir Valor Total &nbsp; <mdb-icon fas icon="dollar-sign"></mdb-icon>
+          <mdb-icon fas icon="chevron-left"></mdb-icon> &nbsp; Voltar
         </button>
       </div>
       <br>
@@ -227,9 +227,13 @@
               </td>
             </tr>
           </tbody>
-          <div class="float-left" style="margin-top:10px; margin-left: -45px;">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-          </div>
+          <tfoot class="text-center">
+            <tr>
+              <td colspan="7">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </mdb-card-body>

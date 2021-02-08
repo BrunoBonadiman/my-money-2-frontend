@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { ContasDecoService } from '../service/contas-deco.service';
 import { ExcelService } from '../service/excel.service';
 import Swal from 'sweetalert2';
@@ -27,7 +28,8 @@ export class RelatorioDecoComponent implements OnInit {
     public contasDecoService: ContasDecoService,
     private excelService: ExcelService,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   key: string = 'descricao';
@@ -46,23 +48,23 @@ export class RelatorioDecoComponent implements OnInit {
         "Valor": conta.valor,
         "Vencimento": conta.vencimento,
         "Parcela": conta.parcela,
-        "status": conta.status,
+        "Status": conta.status,
       });
     }
     return array;
   }
 
-  recuperaValorTotal() {
-    var aux = 0;
-    this.contasDecoService.getContasDeco().subscribe((res) => {
-      this.contasDeco = res as ContasDeco[];
-      res.forEach(function (item) {
-        aux += parseFloat(item.valor.toString());
-      });
-      this.valorCalculado = aux;
-      Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-    });
-  }
+  // recuperaValorTotal() {
+  //   var aux = 0;
+  //   this.contasDecoService.getContasDeco().subscribe((res) => {
+  //     this.contasDeco = res as ContasDeco[];
+  //     res.forEach(function (item) {
+  //       aux += parseFloat(item.valor.toString());
+  //     });
+  //     this.valorCalculado = aux;
+  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
+  //   });
+  // }
 
   recuperarValorTotal2(){
     let aux = 0;
@@ -167,5 +169,9 @@ export class RelatorioDecoComponent implements OnInit {
       this.recuperarDadosTabela(),
       "Despesas_Deco"
     );
+  }
+
+  voltarParaTelaInicial(): void {
+    this.router.navigate(['/dashboard']);
   }
 }

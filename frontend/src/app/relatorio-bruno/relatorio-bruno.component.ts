@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ContasBrunoService } from '../service/contas-bruno.service';
 import { ExcelService } from '../service/excel.service';
@@ -27,7 +28,8 @@ export class RelatorioBrunoComponent implements OnInit {
     public contasBrunoService: ContasBrunoService,
     private excelService: ExcelService,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   key: string = 'descricao';
@@ -52,17 +54,17 @@ export class RelatorioBrunoComponent implements OnInit {
     return array;
   }
 
-  recuperaValorTotal() {
-    var aux = 0;
-    this.contasBrunoService.getContasBruno().subscribe((res) => {
-      this.contasBruno = res as ContasBruno[];
-      res.forEach(function (item) {
-        aux += parseFloat(item.valor.toString());
-      });
-      this.valorCalculado = aux;
-      Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-    });
-  }
+  // recuperaValorTotal() {
+  //   var aux = 0;
+  //   this.contasBrunoService.getContasBruno().subscribe((res) => {
+  //     this.contasBruno = res as ContasBruno[];
+  //     res.forEach(function (item) {
+  //       aux += parseFloat(item.valor.toString());
+  //     });
+  //     this.valorCalculado = aux;
+  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
+  //   });
+  // }
 
   recuperarValorTotal2(){
     let aux = 0;
@@ -169,5 +171,9 @@ export class RelatorioBrunoComponent implements OnInit {
       this.recuperarDadosTabela(),
       "Despesas_Bruno"
     );
+  }
+
+  voltarParaTelaInicial(): void {
+    this.router.navigate(['/dashboard']);
   }
 }
