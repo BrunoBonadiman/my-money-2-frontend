@@ -101,7 +101,6 @@ export class RelatorioBrunoComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    debugger;
     this.contasBrunoService.updateContaBruno(form.value).subscribe((res) => {
       this.resetForm(form);
       this.refreshContas();
@@ -176,4 +175,14 @@ export class RelatorioBrunoComponent implements OnInit {
   voltarParaTelaInicial(): void {
     this.router.navigate(['/dashboard']);
   }
+
+  // marcarComoPago(): void {
+  //   for(let conta of this.contasBruno){
+  //     conta.status = 'Pago';
+  //     this.contasBrunoService.updateContaBruno(conta).subscribe(data => {
+  //       this.refreshContas();
+  //     });
+  //   }
+  //   location.reload();
+  // }
 }
