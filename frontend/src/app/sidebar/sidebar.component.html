@@ -25,19 +25,17 @@
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="userDetails">
       <li class="nav-item" style=" margin-top:10px;">
-        <span style="color:white;">Seja Bem-vindo(a) {{userDetails.fullName}}</span>
+        <span style="color:white;">Olá, {{userDetails.fullName}}</span>
       </li>
       <li class="nav-item">
         <a class="nav-link">
           <div class="btn-group" mdbDropdown>
-            <!-- <img [src]="selectedUser?.urlImage ? env+selectedUser.urlImage : '../../../../assets/img/usuarioFoto.png'" width="30"
-            height="30" class="d-inline-block align-top" alt="" loading="lazy" class="rounded float-right" mdbDropdownToggle> -->
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" [routerLink]="['/perfil']">Perfil</a>
-              <a class="dropdown-item" [routerLink]="['/integrantes']">Cadastrar Integrantes</a>
+              <a class="dropdown-item" [routerLink]="['/perfil']"><mdb-icon fas icon="user-circle"></mdb-icon>&nbsp;Perfil</a>
+              <a class="dropdown-item" [routerLink]="['/integrantes']"><mdb-icon fas icon="plus-circle"></mdb-icon>&nbsp;Cadastrar Integrantes</a>
               <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item" (click)="onLogout()">Sair</a>
+              <a class="dropdown-item" (click)="onLogout()"><mdb-icon fas icon="sign-out-alt"></mdb-icon>&nbsp;Sair</a>
             </div>
           </div>
         </a>

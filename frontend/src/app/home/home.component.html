@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row" style="margin-top:15px;">
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-info">
+      <div class="small-box bg-indigo">
         <div class="inner">
           <h4> R$ {{ recuperaValorTotalBruno()}} </h4>
           <p>Bruno</p>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-success">
+      <div class="small-box bg-pink">
         <div class="inner">
           <h4> R$ {{recuperaValorTotalFranciele()}} <sup style="font-size: 20px"></sup></h4>
           <p>Franciele</p>
@@ -29,20 +29,20 @@
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-warning">
+      <div class="small-box bg-default">
         <div class="inner">
-          <h4>R$ {{recuperaValorTotalDeco()}}</h4>
-          <p>José Antônio</p>
+          <h4 style="color: white;">R$ {{recuperaValorTotalDeco()}}</h4>
+          <p style="color: white;">José Antônio</p>
         </div>
         <div class="icon">
           <i class="fa fa-user" aria-hidden="true"></i>
         </div>
-        <a [routerLink]="['/relatorio-deco']" class="small-box-footer">Mais informações <i
+        <a [routerLink]="['/relatorio-deco']" class="small-box-footer" style="color: white;">Mais informações <i
             class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-danger">
+      <div class="small-box bg-purple">
         <div class="inner">
           <h4>R$ {{recuperaValorTotalPenha()}}</h4>
           <p>Penha</p>
@@ -63,7 +63,7 @@
           <div class="mask"></div>
         </a>
       </div>
-      <mdb-card-header>
+      <mdb-card-header style="background-color:#F8F8FF;">
         <h4>Atualizar Dados</h4>
       </mdb-card-header>
       <mdb-card-body>
@@ -116,18 +116,23 @@
     </mdb-card>
   </div>
   <hr>
+  <!-- <div class="container">
+    <div class="row">
+      <button type="button" mdbBtn color="primary" (click)="previous()"></button>&nbsp;<span>{{mes[0]}}</span>&nbsp;<button type="button" mdbBtn color="primary" (click)="next()"></button>
+    </div>
+  </div> -->
   <mdb-card style="margin-top:20px;">
     <div class="view rgba-white-slight waves-light" mdbWavesEffect>
       <a>
         <div class="mask"></div>
       </a>
     </div>
-    <mdb-card-header>
+    <mdb-card-header style="background-color:#F8F8FF;">
       <h4>Resultados</h4>
     </mdb-card-header>
     <mdb-card-body>
       <div class="row" style="margin-left:-5px;">
-        <button type="button" mdbBtn color="info" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
+        <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
           (click)="frame.show()">
           <mdb-icon fas icon="plus"></mdb-icon> &nbsp; Novo
         </button>
@@ -199,25 +204,23 @@
         <table class="table table-hover table-bordered" mdbTable small="true">
           <thead>
             <tr>
-              <th class="text-center" scope="col" style="background-color:#F8F8FF; width:10%;">Ações</th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF; width:8%;"><strong>Ações</strong></th>
               <th class="text-center" scope="col" (click)="sort('descricao')" style="background-color:#F8F8FF;">
-                Conta&nbsp;<i class="fa fa-sort"></i></th>
+               <strong>Conta</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">
-                Valor&nbsp;<i class="fa fa-sort"></i></th>
+               <strong>Valor</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('vencimento')" style="background-color:#F8F8FF;">
-                Vencimento&nbsp;<i class="fa fa-sort"></i></th>
+               <strong>Vencimento</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('status')" style="background-color:#F8F8FF;">
-                Status&nbsp;<i class="fa fa-sort"></i></th>
+              <strong>Status</strong>&nbsp;<i class="fa fa-sort"></i></th>
             </tr>
           </thead>
-          <tbody
-            *ngFor="let contas of this.contas | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tbody *ngFor="let contas of this.contas | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
             <tr>
               <td class="text-center">
                 <div class="btn-group" mdbDropdown>
-                  <button mdbDropdownToggle type="button" mdbBtn color="primary" size="sm"
-                    class="dropdown-toggle waves-light" mdbWavesEffect>
-                    <mdb-icon fas icon="cog"></mdb-icon>
+                  <button mdbDropdownToggle type="button" mdbBtn color="light" size="sm" mdbWavesEffect>
+                    <i class="fa fa-cog" aria-hidden="true"></i>
                   </button>
 
                   <div class="dropdown-menu dropdown-default">
@@ -246,6 +249,12 @@
             </tr>
           </tbody>
           <tfoot class="text-center">
+            <!-- <tr>
+              <td colspan='5' class="text-center" *ngIf="contas == 0">Nenhum registro encontrado.</td>
+          </tr>
+          <tr>
+              <td colspan='5' class="text-center"><i class='fa fa-spinner fa-spin'></i></td>
+          </tr> -->
             <tr>
               <td colspan="5">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>

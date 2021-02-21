@@ -41,10 +41,26 @@ export class HomeComponent implements OnInit {
   user: User;
   integrante: Integrantes[] = [];
   contas: Contas[] = [];
+  contas2: Contas;
   contasBruno: ContasBruno[];
   contasDeco: ContasDeco[];
   contasFranciele: ContasFranciele[];
   contasPenha: ContasPenha[];
+
+  mes = [
+    'Janeiro/2021',
+    'Fevereiro/2021',
+    'Março/2021',
+    'Abril/2021',
+    'Maio/2021',
+    'Junho/2021',
+    'Julho/2021',
+    'Agosto/2021',
+    'Setembro/2021',
+    'Outubro/2021',
+    'Novembro/2021',
+    'Dezembro/2021'
+  ];
 
   p: number = 1;
 
@@ -65,6 +81,18 @@ export class HomeComponent implements OnInit {
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+
+  previous(){
+    for (let i = 0; i < this.mes.length; i--){
+      this.mes[i];
+    }
+  }
+
+  next(){
+    for (let i = 0; i < this.mes.length; i++){
+      this.mes[i];
+    }
   }
 
   recuperarDadosTabela() {
@@ -260,13 +288,16 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // marcarComoPago(): void {
-  //     let status = this.contasService.selectConta.status;
-  //     status = 'Pago';
-  //     this.contasService.updateConta(s).subscribe(data => {
+  // marcarComoPago() {
+  //   debugger;
+  //   var status = "";
+  //   status = "Pago";
+  //   this.contas2.forEach(function(result) {
+  //     result.status = status;
+  //     this.contasService.updateConta(result._id).subscribe((res) =>{
   //       this.refreshContas();
-  //       Swal.fire("Sucesso!", "Status atualizado com sucesso!", "success");
+  //       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
   //     });
-  //   location.reload();
+  //   })
   // }
 }

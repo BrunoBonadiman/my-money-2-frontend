@@ -8,7 +8,7 @@
           <div class="mask"></div>
         </a>
       </div>
-      <mdb-card-header>
+      <mdb-card-header style="background-color:#F8F8FF;">
         <h4>Atualizar Dados</h4>
       </mdb-card-header>
       <mdb-card-body>
@@ -51,8 +51,7 @@
               <button mdbBtn type="button" color="primary" mdbWavesEffect type="submit"
                 [disabled]="!integrantesForm.valid">Atualizar &nbsp;
                 <mdb-icon fas icon="sync-alt"></mdb-icon></button>
-              <button mdbBtn type="button" color="amber" mdbWavesEffect type="button"
-                (click)="onClose()">fechar &nbsp;
+              <button mdbBtn type="button" color="amber" mdbWavesEffect type="button" (click)="onClose()">fechar &nbsp;
                 <mdb-icon fas icon="times"></mdb-icon></button>
             </div>
           </div>
@@ -67,13 +66,15 @@
         <div class="mask"></div>
       </a>
     </div>
-    <mdb-card-header>
+    <mdb-card-header style="background-color:#F8F8FF;">
       <h4>Resultados</h4>
     </mdb-card-header>
     <mdb-card-body>
       <div class="row" style="margin-left:-5px;">
-        <button type="button" mdbBtn color="info" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
-          (click)="frame.show()"><mdb-icon fas icon="plus"></mdb-icon>&nbsp; Novo</button>
+        <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
+          (click)="frame.show()">
+          <mdb-icon fas icon="plus"></mdb-icon>&nbsp; Novo
+        </button>
 
         <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
@@ -139,23 +140,22 @@
           <thead>
             <tr>
               <th class="text-center" scope="col" style="background-color:#F8F8FF; width:10%;">
-                Ações</th>
+                <strong>Ações</strong></th>
               <th class="text-center" scope="col" style="background-color:#F8F8FF;">
-                Integrante #1</th>
+                <strong>Integrante #1</strong></th>
               <th class="text-center" scope="col" style="background-color:#F8F8FF;">
-                Integrante #2</th>
+                <strong>Integrante #2</strong></th>
               <th class="text-center" scope="col" style="background-color:#F8F8FF;">
-                Integrante #3</th>
+                <strong>Integrante #3</strong></th>
               <th class="text-center" scope="col" style="background-color:#F8F8FF;">
-                Integrante #4</th>
+                <strong>Integrante #4</strong></th>
             </tr>
           </thead>
           <tbody *ngFor="let registro of this.integrantes">
             <tr>
               <td class="text-center">
                 <div class="btn-group" mdbDropdown>
-                  <button mdbDropdownToggle type="button" mdbBtn color="primary" size="sm" class="dropdown-toggle waves-light"
-                    mdbWavesEffect>
+                  <button mdbDropdownToggle type="button" mdbBtn color="light" size="sm" mdbWavesEffect>
                     <mdb-icon fas icon="cog"></mdb-icon>
                   </button>
 

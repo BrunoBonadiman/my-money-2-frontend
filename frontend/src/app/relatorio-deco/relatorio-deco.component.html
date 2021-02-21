@@ -8,7 +8,7 @@
           <div class="mask"></div>
         </a>
       </div>
-      <mdb-card-header>
+      <mdb-card-header style="background-color:#F8F8FF;">
         <h4>Atualizar Dados</h4>
       </mdb-card-header>
       <mdb-card-body>
@@ -79,12 +79,12 @@
         <div class="mask"></div>
       </a>
     </div>
-    <mdb-card-header>
+    <mdb-card-header style="background-color:#F8F8FF;">
       <h4>Resultados</h4>
     </mdb-card-header>
     <mdb-card-body>
       <div class="row" style="margin-left:-5px;">
-        <button type="button" mdbBtn color="info" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
+        <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
           (click)="frame.show()"><mdb-icon fas icon="plus"></mdb-icon> &nbsp; Novo </button>
 
         <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -172,19 +172,19 @@
         <table class="table table-hover table-bordered" mdbTable small="true">
           <thead>
             <tr>
-              <th class="text-center" scope="col" style="background-color:#F8F8FF;width:10%;">Ações</th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;width:10%;"><strong>Ações</strong></th>
               <th class="text-center" scope="col" (click)="sort('descricao')" style="background-color:#F8F8FF;">
-                Conta&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Conta</strong> &nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('detalhe')" style="background-color:#F8F8FF;">
-                Detalhe&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Detalhe</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">
-                Valor&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Valor</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('vencimento')" style="background-color:#F8F8FF;">
-                Vencimento&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Vencimento</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('parcela')" style="background-color:#F8F8FF;">
-                Parcela&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Parcela</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('status')" style="background-color:#F8F8FF;">
-                Status&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Status</strong>&nbsp;<i class="fa fa-sort"></i></th>
             </tr>
           </thead>
           <tbody
@@ -192,8 +192,7 @@
             <tr>
               <td class="text-center">
                 <div class="btn-group" mdbDropdown>
-                  <button mdbDropdownToggle type="button" mdbBtn color="primary" size="sm"
-                    class="dropdown-toggle waves-light" mdbWavesEffect>
+                  <button mdbDropdownToggle type="button" mdbBtn color="light" size="sm" mdbWavesEffect>
                     <mdb-icon fas icon="cog"></mdb-icon>
                   </button>
 
