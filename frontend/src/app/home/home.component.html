@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row" style="margin-top:15px;">
     <div class="col-lg-3 col-6">
-      <div class="small-box bg-indigo">
+      <div class="small-box bg-primary">
         <div class="inner">
           <h4> R$ {{ recuperaValorTotalBruno()}} </h4>
           <p>Bruno</p>
@@ -12,19 +12,6 @@
           <i class="fa fa-user" aria-hidden="true"></i>
         </div>
         <a [routerLink]="['/relatorio-bruno']" class="small-box-footer">Mais informações <i
-            class="fa fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <div class="col-lg-3 col-6">
-      <div class="small-box bg-pink">
-        <div class="inner">
-          <h4> R$ {{recuperaValorTotalFranciele()}} <sup style="font-size: 20px"></sup></h4>
-          <p>Franciele</p>
-        </div>
-        <div class="icon">
-          <i class="fa fa-user" aria-hidden="true"></i>
-        </div>
-        <a [routerLink]="['/relatorio-franciele']" class="small-box-footer">Mais informações <i
             class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
@@ -42,6 +29,19 @@
       </div>
     </div>
     <div class="col-lg-3 col-6">
+      <div class="small-box bg-pink">
+        <div class="inner">
+          <h4> R$ {{recuperaValorTotalFranciele()}} <sup style="font-size: 20px"></sup></h4>
+          <p>Franciele</p>
+        </div>
+        <div class="icon">
+          <i class="fa fa-user" aria-hidden="true"></i>
+        </div>
+        <a [routerLink]="['/relatorio-franciele']" class="small-box-footer">Mais informações <i
+            class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-6">
       <div class="small-box bg-purple">
         <div class="inner">
           <h4>R$ {{recuperaValorTotalPenha()}}</h4>
@@ -55,72 +55,63 @@
       </div>
     </div>
   </div>
-  <hr [hidden]="!exibirFormularioEdicao">
-  <div [hidden]="!exibirFormularioEdicao">
-    <mdb-card style="margin-top:20px;">
-      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
-        <a>
-          <div class="mask"></div>
-        </a>
+  <div mdbModal #edit="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered lg modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Edição</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="edit.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <form #contasForm="ngForm" (ngSubmit)="onSubmit(contasForm)">
+            <div class="form-row">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="contasService.selectConta._id">
+              <div class="form-group col-md-12">
+                <label for="descricao">Conta:</label>
+                <input type="text" name="descricao" #name="ngModel" [(ngModel)]="contasService.selectConta.descricao"
+                  required class="form-control" autocomplete="off">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="valorTotal">Valor:</label>
+                <input name="valorTotal" type="text" #name="ngModel" [(ngModel)]="contasService.selectConta.valorTotal"
+                  class="form-control" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" currencyMask
+                  autocomplete="off">
+              </div>
+              <div class="form-group col-md-4">
+                <label for=" vencimento">Vencimento:</label>
+                <input type="date" name="vencimento" #name="ngModel" [(ngModel)]="contasService.selectConta.vencimento"
+                  class="form-control" autocomplete="off">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="status">Status:</label>
+                <select id="status" name="status" #name="ngModel" [(ngModel)]="contasService.selectConta.status"
+                  required class="form-control">
+                  <option selected disabled>Selecione...</option>
+                  <option>Pago</option>
+                  <option>Pendente</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="input-field col s12">
+                <button mdbBtn color="light" mdbWavesEffect type="button" (click)="resetForm(contasForm)">Limpar
+                  Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+                <button mdbBtn color="primary" mdbWavesEffect type="submit" [disabled]="!contasForm.valid">Atualizar
+                  &nbsp;
+                  <mdb-icon fas icon="sync-alt"></mdb-icon></button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <mdb-card-header style="background-color:#F8F8FF;">
-        <h4>Atualizar Dados</h4>
-      </mdb-card-header>
-      <mdb-card-body>
-        <form #contasForm="ngForm" (ngSubmit)="onSubmit(contasForm)">
-          <div class="form-row">
-            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="contasService.selectConta._id">
-            <div class="form-group col-md-12">
-              <label for="descricao">Conta:</label>
-              <input type="text" name="descricao" #name="ngModel" [(ngModel)]="contasService.selectConta.descricao"
-                required class="form-control" autocomplete="off">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label for="valorTotal">Valor:</label>
-              <input name="valorTotal" type="text" #name="ngModel" [(ngModel)]="contasService.selectConta.valorTotal"
-                class="form-control" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" currencyMask
-                autocomplete="off">
-            </div>
-            <div class="form-group col-md-4">
-              <label for=" vencimento">Vencimento:</label>
-              <input type="date" name="vencimento" #name="ngModel" [(ngModel)]="contasService.selectConta.vencimento"
-                class="form-control" autocomplete="off">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="status">Status:</label>
-              <select id="status" name="status" #name="ngModel" [(ngModel)]="contasService.selectConta.status" required
-                class="form-control">
-                <option selected disabled>Selecione...</option>
-                <option>Pago</option>
-                <option>Pendente</option>
-              </select>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="input-field col s12">
-              <button mdbBtn color="light" mdbWavesEffect type="button" (click)="resetForm(contasForm)">Limpar
-                Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
-              <button mdbBtn color="primary" mdbWavesEffect type="submit" [disabled]="!contasForm.valid">Atualizar
-                &nbsp;
-                <mdb-icon fas icon="sync-alt"></mdb-icon></button>
-              <button mdbBtn color="amber" mdbWavesEffect type="button" (click)="onClose()">fechar
-                &nbsp;
-                <mdb-icon fas icon="times"></mdb-icon></button>
-            </div>
-          </div>
-        </form>
-      </mdb-card-body>
-    </mdb-card>
-  </div>
-  <hr>
-  <!-- <div class="container">
-    <div class="row">
-      <button type="button" mdbBtn color="primary" (click)="previous()"></button>&nbsp;<span>{{mes[0]}}</span>&nbsp;<button type="button" mdbBtn color="primary" (click)="next()"></button>
     </div>
-  </div> -->
+  </div>
   <mdb-card style="margin-top:20px;">
     <div class="view rgba-white-slight waves-light" mdbWavesEffect>
       <a>
@@ -204,18 +195,20 @@
         <table class="table table-hover table-bordered" mdbTable small="true">
           <thead>
             <tr>
-              <th class="text-center" scope="col" style="background-color:#F8F8FF; width:8%;"><strong>Ações</strong></th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF; width:8%;"><strong>Ações</strong>
+              </th>
               <th class="text-center" scope="col" (click)="sort('descricao')" style="background-color:#F8F8FF;">
-               <strong>Conta</strong>&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Conta</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">
-               <strong>Valor</strong>&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Valor</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('vencimento')" style="background-color:#F8F8FF;">
-               <strong>Vencimento</strong>&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Vencimento</strong>&nbsp;<i class="fa fa-sort"></i></th>
               <th class="text-center" scope="col" (click)="sort('status')" style="background-color:#F8F8FF;">
-              <strong>Status</strong>&nbsp;<i class="fa fa-sort"></i></th>
+                <strong>Status</strong>&nbsp;<i class="fa fa-sort"></i></th>
             </tr>
           </thead>
-          <tbody *ngFor="let contas of this.contas | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tbody
+            *ngFor="let contas of this.contas | orderBy: key: reverse | paginate: { itemsPerPage: 10, currentPage: p }">
             <tr>
               <td class="text-center">
                 <div class="btn-group" mdbDropdown>
@@ -224,15 +217,13 @@
                   </button>
 
                   <div class="dropdown-menu dropdown-default">
-                    <a class="dropdown-item" (click)="onEdit(contas)">
+                    <a class="dropdown-item" data-toggle="modal" data-target="#basicExample"
+                      (click)="edit.show(); onEdit(contas);">
                       <i class="fa fa-edit"></i><span>Editar</span>
                     </a>
                     <a class="dropdown-item" (click)="onDelete(contas._id,contasForm)">
                       <i class="fa fa-trash"></i>&nbsp;<span>Deletar</span>
                     </a>
-                    <!-- <a class="dropdown-item" (click)="marcarComoPago()">
-                      <mdb-icon fas icon="check"></mdb-icon>&nbsp;<span>Marcar como Pago</span>
-                    </a> -->
                   </div>
                 </div>
               </td>
@@ -249,12 +240,6 @@
             </tr>
           </tbody>
           <tfoot class="text-center">
-            <!-- <tr>
-              <td colspan='5' class="text-center" *ngIf="contas == 0">Nenhum registro encontrado.</td>
-          </tr>
-          <tr>
-              <td colspan='5' class="text-center"><i class='fa fa-spinner fa-spin'></i></td>
-          </tr> -->
             <tr>
               <td colspan="5">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>

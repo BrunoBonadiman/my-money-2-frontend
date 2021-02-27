@@ -1,0 +1,251 @@
+<app-sidebar></app-sidebar>
+
+<div class="container-fluid">
+  <div mdbModal #edit="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered lg modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Edição</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="edit.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <form #graficoForm="ngForm" (ngSubmit)="onSubmit(graficoForm)">
+            <div class="form-row">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="graficoService.selectDado._id">
+              <div class="form-group col-md-4">
+                <label for="valor">Valor:</label>
+                <input name="valor" type="text" #name="ngModel"
+                  [(ngModel)]="graficoService.selectDado.valor" class="form-control"
+                  [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" currencyMask
+                  autocomplete="off">
+              </div>
+              <div class="form-group col-md-4">
+                <label for=" mes">Mês:</label>
+                <select id="mes" name="mes" #name="ngModel"
+                  [(ngModel)]="graficoService.selectDado.mes" required class="form-control">
+                  <option selected disabled>Selecione...</option>
+                  <option>Janeiro</option>
+                  <option>Fevereiro</option>
+                  <option>Março</option>
+                  <option>Abril</option>
+                  <option>Maio</option>
+                  <option>Junho</option>
+                  <option>Julho</option>
+                  <option>Agosto</option>
+                  <option>Setembro</option>
+                  <option>Outubro</option>
+                  <option>Novembro</option>
+                  <option>Dezembro</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="ano">Ano:</label>
+                <select id="ano" name="ano" #name="ngModel"
+                  [(ngModel)]="graficoService.selectDado.ano" required class="form-control">
+                  <option selected disabled>Selecione...</option>
+                  <option>2021</option>
+                  <option>2022</option>
+                  <option>2023</option>
+                  <option>2024</option>
+                  <option>2025</option>
+                  <option>2026</option>
+                  <option>2027</option>
+                  <option>2028</option>
+                  <option>2029</option>
+                  <option>2030</option>
+                  <option>2031</option>
+                  <option>2032</option>
+                  <option>2033</option>
+                  <option>2034</option>
+                  <option>2035</option>
+                  <option>2036</option>
+                  <option>2037</option>
+                  <option>2038</option>
+                  <option>2039</option>
+                  <option>2040</option>
+                  <option>2041</option>
+                  <option>2042</option>
+                  <option>2043</option>
+                  <option>2044</option>
+                  <option>2045</option>
+                  <option>2046</option>
+                  <option>2047</option>
+                  <option>2048</option>
+                  <option>2049</option>
+                  <option>2050</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="input-field col s12">
+                <button mdbBtn type="button" color="light" mdbWavesEffect type="button"
+                  (click)="resetForm(graficoForm)">Limpar
+                  Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+                <button mdbBtn type="button" color="primary" mdbWavesEffect type="submit"
+                  [disabled]="!graficoForm.valid">Atualizar &nbsp;
+                  <mdb-icon fas icon="sync-alt"></mdb-icon></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <mdb-card style="margin-top:20px;">
+    <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+      <a>
+        <div class="mask"></div>
+      </a>
+    </div>
+    <mdb-card-header style="background-color:#F8F8FF;">
+      <h4>Resultados</h4>
+    </mdb-card-header>
+    <mdb-card-body>
+      <div class="row" style="margin-left:-5px;">
+        <button type="button" mdbBtn color="primary" mdbWavesEffect data-toggle="modal" data-target="#basicExample"
+          (click)="frame.show()">
+          <mdb-icon fas icon="plus"></mdb-icon> &nbsp; Novo
+        </button>
+
+        <div mdbModal #frame="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered lg modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Cadastro</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-3">
+                <form #graficoForm="ngForm" (ngSubmit)="onSubmit(graficoForm)">
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="valor">Valor:</label>
+                      <input name="valor" type="text" #name="ngModel"
+                        [(ngModel)]="graficoService.selectDado.valor" class="form-control"
+                        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" currencyMask autocomplete="off">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for=" mes">Mês:</label>
+                      <select id="mes" name="mes" #name="ngModel" [(ngModel)]="graficoService.selectDado.mes"
+                        required class="form-control">
+                        <option selected disabled>Selecione...</option>
+                        <option>Janeiro</option>
+                        <option>Fevereiro</option>
+                        <option>Março</option>
+                        <option>Abril</option>
+                        <option>Maio</option>
+                        <option>Junho</option>
+                        <option>Julho</option>
+                        <option>Agosto</option>
+                        <option>Setembro</option>
+                        <option>Outubro</option>
+                        <option>Novembro</option>
+                        <option>Dezembro</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label for="ano">Ano:</label>
+                      <select id="ano" name="ano" #name="ngModel" [(ngModel)]="graficoService.selectDado.ano"
+                        required class="form-control">
+                        <option selected disabled>Selecione...</option>
+                        <option>2021</option>
+                        <option>2022</option>
+                        <option>2023</option>
+                        <option>2024</option>
+                        <option>2025</option>
+                        <option>2026</option>
+                        <option>2027</option>
+                        <option>2028</option>
+                        <option>2029</option>
+                        <option>2030</option>
+                        <option>2031</option>
+                        <option>2032</option>
+                        <option>2033</option>
+                        <option>2034</option>
+                        <option>2035</option>
+                        <option>2036</option>
+                        <option>2037</option>
+                        <option>2038</option>
+                        <option>2039</option>
+                        <option>2040</option>
+                        <option>2041</option>
+                        <option>2042</option>
+                        <option>2043</option>
+                        <option>2044</option>
+                        <option>2045</option>
+                        <option>2046</option>
+                        <option>2047</option>
+                        <option>2048</option>
+                        <option>2049</option>
+                        <option>2050</option>
+                      </select>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <button mdbBtn color="light" mdbWavesEffect type="button" (click)="resetForm(graficoForm)">Limpar
+                        Formulário &nbsp; <i class="fa fa-undo" aria-hidden="true"></i></button>
+                      <button mdbBtn color="primary" mdbWavesEffect type="button" [disabled]="!graficoForm.valid"
+                        (click)="cadastrarNovoDado(graficoForm)">Cadastrar &nbsp;
+                        <i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button mdbBtn type="button" color="light" mdbWavesEffect (click)="voltarParaGrafico()"
+          style="margin-left: 7px;">
+          <mdb-icon fas icon="chevron-left"></mdb-icon> &nbsp; Voltar
+        </button>
+      </div>
+      <br>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered" mdbTable small="true">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF; width:10%;">
+                <strong>Ações</strong></th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
+                <strong>Valor</strong></th>
+              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
+                <strong>Mes/Ano</strong></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let registro of this.grafico">
+            <tr>
+              <td class="text-center">
+                <div class="btn-group" mdbDropdown>
+                  <button mdbDropdownToggle type="button" mdbBtn color="light" size="sm" mdbWavesEffect>
+                    <mdb-icon fas icon="cog"></mdb-icon>
+                  </button>
+
+                  <div class="dropdown-menu dropdown-default">
+                    <a class="dropdown-item" (click)="edit.show(); onEdit(registro)">
+                      <i class="fa fa-edit">&nbsp;&nbsp;</i><span>Editar</span>
+                    </a>
+                    <a class="dropdown-item" (click)="onDelete(registro._id,graficoForm)">
+                      <i class="fa fa-trash"></i>&nbsp;&nbsp;&nbsp;<span>Deletar</span>
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                {{registro.valor | currency: 'BRL'}}</td>
+              <td class="text-center">
+                {{registro.mes + '/' + registro.ano}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mdb-card-body>
+  </mdb-card>
+</div>

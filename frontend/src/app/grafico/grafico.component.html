@@ -6,16 +6,13 @@
       <h4>Relatório Mensal de Gastos</h4>
     </mdb-card-header>
     <mdb-card-body>
+      <button mdbBtn color="primary" mdbWavesEffec (click)="cadastrarValoresMensais()">
+        <mdb-icon fas icon="plus"></mdb-icon> &nbsp;Cadastrar Valor Mensal
+      </button>
       <div style="display: block">
-        <canvas mdbChart
-            [chartType]="chartType"
-            [datasets]="chartDatasets"
-            [labels]="chartLabels"
-            [colors]="chartColors"
-            [options]="chartOptions"
-            [legend]="true"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
+        <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+          [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
         </canvas>
       </div>
     </mdb-card-body>

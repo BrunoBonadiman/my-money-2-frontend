@@ -54,18 +54,6 @@ export class RelatorioDecoComponent implements OnInit {
     return array;
   }
 
-  // recuperaValorTotal() {
-  //   var aux = 0;
-  //   this.contasDecoService.getContasDeco().subscribe((res) => {
-  //     this.contasDeco = res as ContasDeco[];
-  //     res.forEach(function (item) {
-  //       aux += parseFloat(item.valor.toString());
-  //     });
-  //     this.valorCalculado = aux;
-  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-  //   });
-  // }
-
   recuperarValorTotal2(){
     let aux = 0;
     for (let conta of this.contasDeco) {
