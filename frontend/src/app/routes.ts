@@ -13,6 +13,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FooterComponent } from './footer/footer.component';
 import { CadastroIntegrantesComponent } from './cadastro-integrantes/cadastro-integrantes.component';
 import { GraficoComponent } from './grafico/grafico.component';
+import { ValoresMensaisComponent } from './valores-mensais/valores-mensais.component';
 
 export const appRoutes: Routes = [
   {
@@ -68,6 +69,10 @@ export const appRoutes: Routes = [
   {
     path: 'grafico',
     component: GraficoComponent
+  },
+  {
+    path: 'valores-mensais',
+    component: ValoresMensaisComponent
   },
   {
     path: '',
