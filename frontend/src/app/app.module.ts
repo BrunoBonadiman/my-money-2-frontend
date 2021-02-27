@@ -38,6 +38,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CadastroIntegrantesComponent } from './cadastro-integrantes/cadastro-integrantes.component';
 import { IntegrantesService } from "./service/integrantes.service";
 import { GraficoComponent } from './grafico/grafico.component';
+import { ValoresMensaisComponent } from "./valores-mensais/valores-mensais.component";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { GraficoComponent } from './grafico/grafico.component';
     PerfilComponent,
     FooterComponent,
     CadastroIntegrantesComponent,
-    GraficoComponent
+    GraficoComponent,
+    ValoresMensaisComponent
   ],
   imports: [
     BrowserModule,
