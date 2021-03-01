@@ -31,7 +31,7 @@ export class GraficoComponent {
   public chartType: string = 'line';
 
   public chartDatasets: Array<any> = [
-    { data: [5535.16], label: 'Valor em R$' },
+    { data: [5535.16, 5004.92], label: 'Valor em R$' },
   ];
 
   public chartLabels: Array<any> = this.mes;
