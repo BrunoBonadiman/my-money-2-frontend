@@ -214,13 +214,12 @@
             <tr>
               <th class="text-center" scope="col" style="background-color:#F8F8FF; width:10%;">
                 <strong>Ações</strong></th>
-              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
-                <strong>Valor</strong></th>
-              <th class="text-center" scope="col" style="background-color:#F8F8FF;">
-                <strong>Mes/Ano</strong></th>
+              <th class="text-center" scope="col" (click)="sort('valor')" style="background-color:#F8F8FF;">
+                <strong>Valor</strong>&nbsp;<i class="fa fa-sort"></i></th>
+              <th class="text-center" scope="col" (click)="sort('mes')" style="background-color:#F8F8FF;">
+                <strong>Mes/Ano</strong>&nbsp;<i class="fa fa-sort"></i></th>
             </tr>
           </thead>
-          <tbody *ngFor="let registro of this.grafico">
             <tr>
               <td class="text-center">
                 <div class="btn-group" mdbDropdown>

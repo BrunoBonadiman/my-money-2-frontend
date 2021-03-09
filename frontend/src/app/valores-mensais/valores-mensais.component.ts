@@ -19,8 +19,16 @@ export class ValoresMensaisComponent implements OnInit {
   user: User;
   grafico: Grafico[] = [];
   array: Array<any> = [];
+  p: number = 1;
 
   constructor(public graficoService: GraficoService, private userService: UserService, private location: Location, private router: Router) { }
+
+  key: string = "valor";
+  reverse: boolean = false;
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 
   ngOnInit() {
     this.resetForm();
