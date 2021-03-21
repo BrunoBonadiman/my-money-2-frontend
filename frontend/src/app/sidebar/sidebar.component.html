@@ -1,6 +1,6 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark black" style="background-color: #1C2833;" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light lighten-5" [containerInside]="false">
   <mdb-navbar-brand><img src="../../assets/img/unnamed.png" alt="" id="logo"></mdb-navbar-brand>
-   <span style="margin-left:10px; color:white;"><strong>My Money 2</strong></span> &nbsp;&nbsp;
+   <span style="margin-left:10px;"><strong>My Money 2</strong></span> &nbsp;&nbsp;
   <links>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -25,7 +25,7 @@
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="userDetails">
       <li class="nav-item" style=" margin-top:10px;">
-        <span style="color:white;">Olá, {{userDetails.fullName}}</span>
+        <span>Olá, {{userDetails.fullName}}</span>
       </li>
       <li class="nav-item">
         <a class="nav-link">
