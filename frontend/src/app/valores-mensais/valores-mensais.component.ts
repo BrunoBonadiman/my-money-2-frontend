@@ -112,7 +112,7 @@ export class ValoresMensaisComponent implements OnInit {
 
   onDelete(_id: string, form: NgForm) {
     Swal.fire({
-      title: "Tem certeza que deseja deletar o Integrante: " + _id + "?",
+      title: "Tem certeza que deseja deletar o dado: " + _id + "?",
       text: "Após confirmar, a ação não poderá ser revertida!",
       icon: "warning",
       showCancelButton: true,
