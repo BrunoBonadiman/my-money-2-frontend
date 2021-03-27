@@ -1,12 +1,11 @@
-<mdb-card>
-  <mdb-card-header class="info-color white-text text-center py-4">
-    <h5>
-      <i class="fa fa-lock" aria-hidden="true">&nbsp;</i><strong>Login</strong>
-    </h5>
-  </mdb-card-header>
-  <mdb-card-body class="px-lg-5 pt-0">
+<img class="wave" src="../../../assets/img/wave.png">
+<img class="wave2" src="../../../assets/img/wave.png">
+<div class="teste">
+  <div class="login-content">
     <form class="text-center" style="color: #757575;" #signInForm="ngForm"
       (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+      <img src="../../../assets/img/unnamed.png">
+      <h2 class="title">Bem-vindo(a)</h2>
       <div class="form-group">
         <div class="md-form mb-5">
           <input type="email" name="email" #email="ngModel" class="form-control" [(ngModel)]="model.email" required
@@ -31,16 +30,9 @@
           </div>
         </div>
       </div>
-
-      <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0"
-        mdbWavesEffect type="submit">Entrar&nbsp;&nbsp;<mdb-icon fas icon="sign-in-alt"></mdb-icon></button>
-
-      <hr>
-      <p>Ainda não possui uma conta?
-        <a routerLink="/signup" routerLinkActive="active">Cadastre-se</a>. </p>
+      <input type="submit" class="btn" value="Entrar">
+      <a class="text-center" routerLink="/signup" routerLinkActive="active">Cadastre-se clicando aqui!</a>
     </form>
     <div class="alert alert-danger" role="alert" *ngIf="serverErrorMessages">
       {{serverErrorMessages}}
     </div>
-  </mdb-card-body>
-</mdb-card>
