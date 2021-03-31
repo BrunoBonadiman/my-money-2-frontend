@@ -7,9 +7,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="./assets/img/unnamed.png" width="23" height="23">
+   <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600&display=swap" rel="stylesheet">
+  <script src="src/assets/js/main.js"></script>
 </head>
-<body style="background-color: #F2F2F2; font-family: 'Roboto', sans-serif;">
+<body id="body-pd" style="background-color: #F2F2F2; font-family: 'Roboto', sans-serif;" [ngClass]="{'body-pd': openNavbar}">
   <app-root></app-root>
 </body>
 </html>
