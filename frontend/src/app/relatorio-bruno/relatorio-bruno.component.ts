@@ -23,6 +23,7 @@ export class RelatorioBrunoComponent implements OnInit {
   contasBruno: ContasBruno[] = [];
 
   p: number = 1;
+  openNavbar: boolean;
 
   constructor(
     public contasBrunoService: ContasBrunoService,
@@ -53,19 +54,6 @@ export class RelatorioBrunoComponent implements OnInit {
     }
     return array;
   }
-
-  // recuperaValorTotal() {
-  //   var aux = 0;
-  //   this.contasBrunoService.getContasBruno().subscribe((res) => {
-  //     this.contasBruno = res as ContasBruno[];
-  //     res.forEach(function (item) {
-  //       aux += parseFloat(item.valor.toString());
-  //     });
-  //     this.valorCalculado = aux;
-  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-  //   });
-  // }
-
   recuperarValorTotal2(){
     let aux = 0;
     for (let conta of this.contasBruno) {
@@ -114,6 +102,15 @@ export class RelatorioBrunoComponent implements OnInit {
     this.exibirFormularioEdicao = false;
   }
 
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
+
   refreshContas() {
     this.userService.getUserProfile().subscribe((usuario:any) => {
       this.user = usuario as User;
@@ -138,7 +135,6 @@ export class RelatorioBrunoComponent implements OnInit {
   }
 
   onEdit(contas: ContasBruno) {
-    debugger;
     this.exibirFormularioEdicao = true;
     this.contasBrunoService.selectContaBruno = contas;
   }

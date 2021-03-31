@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
+import { Router } from '@angular/router';
 import { IntegrantesService } from "../service/integrantes.service";
 import Swal from "sweetalert2";
 import { NgForm } from "@angular/forms";
@@ -17,11 +18,13 @@ export class CadastroIntegrantesComponent implements OnInit {
   exibirFormularioEdicao = false;
   user: User;
   integrantes: Integrantes[] = [];
+  openNavbar: boolean;
 
   constructor(
     public integrantesService: IntegrantesService,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -116,5 +119,14 @@ export class CadastroIntegrantesComponent implements OnInit {
       }
       location.reload();
     });
+  }
+
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
   }
 }

@@ -23,6 +23,7 @@ export class RelatorioDecoComponent implements OnInit {
   contasDeco: ContasDeco[] = [];
 
   p: number = 1;
+  openNavbar: boolean;
 
   constructor(
     public contasDecoService: ContasDecoService,
@@ -123,6 +124,15 @@ export class RelatorioDecoComponent implements OnInit {
         });
       });
     });
+  }
+
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
   }
 
   onEdit(contas: ContasDeco) {

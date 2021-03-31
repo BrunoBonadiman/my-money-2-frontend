@@ -22,6 +22,7 @@ export class RelatorioFrancieleComponent implements OnInit {
   contasFranciele: ContasFranciele[] = [];
   user: User;
   p: number = 1;
+  openNavbar: boolean;
 
   constructor(
     public contasFrancieleService: ContasFrancieleService,
@@ -53,17 +54,14 @@ export class RelatorioFrancieleComponent implements OnInit {
     return array;
   }
 
-  // recuperaValorTotal() {
-  //   var aux = 0;
-  //   this.contasFrancieleService.getContasFranciele().subscribe((res) => {
-  //     this.contasFranciele = res as ContasFranciele[];
-  //     res.forEach(function (item) {
-  //       aux += parseFloat(item.valor.toString());
-  //     });
-  //     this.valorCalculado = aux;
-  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-  //   });
-  // }
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
 
   recuperarValorTotal2(){
     let aux = 0;

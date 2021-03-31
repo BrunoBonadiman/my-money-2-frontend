@@ -1,45 +1,53 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light lighten-5" [containerInside]="false">
-  <mdb-navbar-brand><img src="../../assets/img/unnamed.png" alt="" id="logo"></mdb-navbar-brand>
-   <span style="margin-left:10px;"><strong>My Money 2</strong></span> &nbsp;&nbsp;
-  <links>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link waves-light" [routerLink]="['/dashboard']" mdbWavesEffect>Inicio<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" [routerLink]="['/cadastro']" mdbWavesEffect>Cadastro<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Relatórios<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-bruno']" mdbWavesEffect>Relatório Mensal Integrante #1</a>
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-franciele']" mdbWavesEffect>Relatório Mensal Integrante #2</a>
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-deco']" mdbWavesEffect>Relatório Mensal Integrante #3</a>
-          <a class="dropdown-item waves-light" [routerLink]="['/relatorio-penha']" mdbWavesEffect>Relatório Mensal Integrante #4</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" [routerLink]="['/grafico']" mdbWavesEffect>Relatório Mensal<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="userDetails">
-      <li class="nav-item" style=" margin-top:10px;">
-        <span>Olá, {{userDetails.fullName}}</span>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link">
-          <div class="btn-group" mdbDropdown>
-            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
-            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" [routerLink]="['/perfil']"><mdb-icon fas icon="user-circle"></mdb-icon>&nbsp;Perfil</a>
-              <a class="dropdown-item" [routerLink]="['/integrantes']"><mdb-icon fas icon="plus-circle"></mdb-icon>&nbsp;Cadastrar Integrantes</a>
-              <div class="divider dropdown-divider"></div>
-              <a class="dropdown-item" (click)="onLogout()"><mdb-icon fas icon="sign-out-alt"></mdb-icon>&nbsp;Sair</a>
-            </div>
-          </div>
+<header class="header" id="header" [ngClass]="{'body-pd': openNavbar}">
+  <div class="header__toggle" [ngClass]="{'bx bx-x': openNavbar}">
+    <i class='bx bx-menu' id="header-toggle" (click)="showNavbar()"></i>
+  </div>
+</header>
+
+<div class="l-navbar" id="nav-bar" [ngClass]="{'show': openNavbar}">
+  <nav class="nav">
+    <div>
+      <a [routerLink]="['/dashboard']" class="nav-link waves-light nav__logo" mdbWavesEffect>
+        <mdb-icon class="nav__logo-icon" fas icon="hand-holding-usd"></mdb-icon>
+        <span class="nav__logo-name">My Money</span>
+      </a>
+
+      <div class="nav__list">
+        <a [routerLink]="['/dashboard']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Dashboard" placement="right">
+          <i class='bx bx-grid-alt nav__icon'></i>
+          <span class="nav__name">Dashboard</span>
         </a>
-      </li>
-    </ul>
-  </links>
-</mdb-navbar>
+
+        <a [routerLink]="['/perfil']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Perfil" placement="right">
+          <i class='bx bx-user nav__icon'></i>
+          <span class="nav__name">Perfil</span>
+        </a>
+
+        <a [routerLink]="['/cadastro']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Cadastro" placement="right">
+          <i class='bx bx-message-square-detail nav__icon'></i>
+          <span class="nav__name">Cadastro</span>
+        </a>
+
+        <a href="#" class="nav-link waves-light nav__link" mdbWavesEffect>
+          <i class='bx bx-bookmark nav__icon'></i>
+          <span class="nav__name">Favorites</span>
+        </a>
+
+        <a href="#" class="nav-link waves-light nav__link" mdbWavesEffect>
+          <i class='bx bx-folder nav__icon'></i>
+          <span class="nav__name">Data</span>
+        </a>
+
+        <a [routerLink]="['/grafico']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Analytics" placement="right">
+          <i class='bx bx-bar-chart-alt-2 nav__icon'></i>
+          <span class="nav__name">Analytics</span>
+        </a>
+      </div>
+    </div>
+
+    <a class="nav-link waves-light nav__link" (click)="onLogout()" mdbWavesEffect customHeight="50" mdbTooltip="Sair" placement="right">
+      <i class='bx bx-log-out nav__icon'></i>
+      <span class="nav__name">Sair</span>
+    </a>
+  </nav>
+</div>

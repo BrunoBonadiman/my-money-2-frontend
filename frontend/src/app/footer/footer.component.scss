@@ -1,5 +1,8 @@
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
+  right: 0;
+  justify-self: end;
   width: 100%;
+  background-color:#FFFFFF;
 }

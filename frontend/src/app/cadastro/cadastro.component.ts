@@ -4,6 +4,8 @@ import { Contas } from '../model/contas-model';
 import { ContasService } from '../service/contas.service';
 import swal from 'sweetalert2';
 import { IMyOptions } from 'ng-uikit-pro-standard';
+import { Router } from '@angular/router';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,9 +13,11 @@ import { IMyOptions } from 'ng-uikit-pro-standard';
   styleUrls: ['./cadastro.component.scss'],
   providers: [ContasService]
 })
-export class CadastroComponent{
+export class CadastroComponent {
 
-  constructor(public contasService: ContasService) { }
+  openNavbar:boolean;
+
+  constructor(public contasService: ContasService, private router: Router, private userService: UserService) { }
 
   onSubmit(form: NgForm) {
     this.contasService.addConta(form.value).subscribe((res) => {
@@ -29,9 +33,18 @@ export class CadastroComponent{
     });
   }
 
+  showNavbar(): void {
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
+
   resetForm(form?: NgForm) {
     if (form)
-      form.reset();
+    form.reset();
     this.contasService.selectConta = {
       _id: "",
       descricao: "",

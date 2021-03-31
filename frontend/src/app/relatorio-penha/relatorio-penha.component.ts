@@ -22,6 +22,7 @@ export class RelatorioPenhaComponent implements OnInit {
   user: User;
   contasPenha: ContasPenha[] = [];
   p: number = 1;
+  openNavbar: boolean;
 
   constructor(
     public contasPenhaService: ContasPenhaService,
@@ -54,17 +55,14 @@ export class RelatorioPenhaComponent implements OnInit {
     return array;
   }
 
-  // recuperaValorTotal() {
-  //   var aux = 0;
-  //   this.contasPenhaService.getContasPenha().subscribe((res) => {
-  //     this.contasPenha = res as ContasPenha[];
-  //     res.forEach(function (item) {
-  //       aux += parseFloat(item.valor.toString());
-  //     });
-  //     this.valorCalculado = aux;
-  //     Swal.fire('Valor Total: ' + 'R$' + this.valorCalculado.toFixed(2));
-  //   });
-  // }
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
 
   recuperarValorTotal2(){
     let aux = 0;

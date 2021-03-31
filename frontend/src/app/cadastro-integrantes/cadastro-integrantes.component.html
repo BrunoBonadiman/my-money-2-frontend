@@ -1,6 +1,59 @@
-<app-sidebar></app-sidebar>
+<header class="header" id="header" [ngClass]="{'body-pd': openNavbar}">
+  <div class="header__toggle">
+    <i class='bx bx-menu' id="header-toggle" (click)="showNavbar()"></i>
+  </div>
+</header>
 
-<div class="container-fluid">
+<div class="l-navbar" id="nav-bar" [ngClass]="{'show': openNavbar}">
+  <nav class="nav">
+    <div>
+      <a [routerLink]="['/dashboard']" class="nav-link waves-light nav__logo" mdbWavesEffect>
+        <mdb-icon class="nav__logo-icon" fas icon="hand-holding-usd"></mdb-icon>
+        <span class="nav__logo-name">My Money</span>
+      </a>
+
+      <div class="nav__list">
+        <a [routerLink]="['/dashboard']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Dashboard" placement="right">
+          <i class='bx bx-grid-alt nav__icon'></i>
+          <span class="nav__name">Dashboard</span>
+        </a>
+
+        <a [routerLink]="['/perfil']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Perfil" placement="right">
+          <i class='bx bx-user nav__icon'></i>
+          <span class="nav__name">Perfil</span>
+        </a>
+
+         <!--<a [routerLink]="['/cadastro']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Cadastro" placement="right">
+          <i class='bx bx-message-square-detail nav__icon'></i>
+          <span class="nav__name">Cadastro</span>
+        </a>
+
+        <a href="#" class="nav-link waves-light nav__link" mdbWavesEffect>
+          <i class='bx bx-bookmark nav__icon'></i>
+          <span class="nav__name">Favorites</span>
+        </a>
+
+        <a href="#" class="nav-link waves-light nav__link" mdbWavesEffect>
+          <i class='bx bx-folder nav__icon'></i>
+          <span class="nav__name">Data</span>
+        </a> -->
+
+        <a [routerLink]="['/grafico']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Analytics" placement="right">
+          <i class='bx bx-bar-chart-alt-2 nav__icon'></i>
+          <span class="nav__name">Analytics</span>
+        </a>
+      </div>
+    </div>
+
+    <a class="nav-link waves-light nav__link" style="color: #CEF6E3"(click)="onLogout()" mdbWavesEffect customHeight="50" mdbTooltip="Sair" placement="right">
+      <i class='bx bx-log-out nav__icon' id="nav-sair"></i>
+      <span class="nav__name" id="nav-sair">Sair</span>
+    </a>
+  </nav>
+</div>
+
+
+<div class="container" [ngClass]="{'body-pd': openNavbar}" style="margin-top:80px;">
   <div mdbModal #edit="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered lg modal-lg" role="document">

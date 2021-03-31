@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Grafico } from '../model/grafico-model';
 import { GraficoService } from '../service/grafico.service';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-grafico',
@@ -8,7 +10,7 @@ import { GraficoService } from '../service/grafico.service';
   styleUrls: ['./grafico.component.scss'],
   providers: [GraficoService]
 })
-export class GraficoComponent {
+export class GraficoComponent implements OnInit {
 
   mes = [
     'Janeiro/2021',
@@ -25,13 +27,30 @@ export class GraficoComponent {
     'Dezembro/2021'
   ];
 
-  constructor( public graficoService: GraficoService,
+  valores = [
+    5535.16,
+    5004.92
+  ];
+
+  grafico: Grafico[];
+  openNavbar: boolean;
+
+  constructor(public graficoService: GraficoService,
+    private userService: UserService,
     private router: Router) { }
+
+  ngOnInit() {
+    this.graficoService.getDados().subscribe((res) => {
+      this.grafico = res as Grafico[];
+    });
+
+    console.log(this.listarValores());
+  }
 
   public chartType: string = 'line';
 
   public chartDatasets: Array<any> = [
-    { data: [5535.16, 5029.54, 4865.86], label: 'Valor em R$' },
+    { data: this.valores, label: 'Valor em R$' },
   ];
 
   public chartLabels: Array<any> = this.mes;
@@ -50,7 +69,27 @@ export class GraficoComponent {
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
 
-  cadastrarValoresMensais():void{
+  cadastrarValoresMensais(): void {
     this.router.navigate(['/valores-mensais']);
+  }
+
+  listarValores() {
+    debugger;
+    let array: Array<any> = [];
+    for (let valores of this.grafico) {
+      array.push({
+        Valor: valores.valor
+      });
+    }
+    return array;
+  }
+
+  showNavbar(): void {
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
   }
 }

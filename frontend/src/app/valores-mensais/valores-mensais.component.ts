@@ -19,21 +19,23 @@ export class ValoresMensaisComponent implements OnInit {
   user: User;
   grafico: Grafico[] = [];
   array: Array<any> = [];
-  p: number = 1;
+  openNavbar: boolean;
 
   constructor(public graficoService: GraficoService, private userService: UserService, private location: Location, private router: Router) { }
-
-  key: string = "valor";
-  reverse: boolean = false;
-  sort(key) {
-    this.key = key;
-    this.reverse = !this.reverse;
-  }
 
   ngOnInit() {
     this.resetForm();
     this.refreshDados();
     console.log(this.recuperarListaDeValores());
+  }
+
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
   }
 
   recuperarListaDeValores(){
@@ -112,7 +114,7 @@ export class ValoresMensaisComponent implements OnInit {
 
   onDelete(_id: string, form: NgForm) {
     Swal.fire({
-      title: "Tem certeza que deseja deletar o dado: " + _id + "?",
+      title: "Tem certeza que deseja deletar o Integrante: " + _id + "?",
       text: "Após confirmar, a ação não poderá ser revertida!",
       icon: "warning",
       showCancelButton: true,

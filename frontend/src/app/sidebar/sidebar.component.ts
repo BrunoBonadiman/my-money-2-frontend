@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Integrantes } from '../model/integrantes-model';
 import { IntegrantesService } from '../service/integrantes.service';
@@ -16,12 +16,25 @@ export class SidebarComponent implements OnInit {
   info = <any>[];
   integrantes: Integrantes[];
 
+  myScriptElement: HTMLScriptElement;
+
+  openNavbar: boolean;
+
+  @ViewChild('nav-bar', { static: true }) navBac: any;
+
   constructor(
     private userService: UserService,
     private integrantesService: IntegrantesService,
     private router: Router
-  ) {}
+  ) {
+    this.myScriptElement = document.createElement('script');
+    this.myScriptElement.src = "src/assets/js/main.js";
+    document.body.appendChild(this.myScriptElement);
+  }
 
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
 
   ngOnInit(): void {
     this.userService.getUserProfile().subscribe(

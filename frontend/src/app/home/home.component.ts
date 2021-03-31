@@ -17,6 +17,7 @@ import { UserService } from "../shared/user.service";
 import { User } from "../shared/user.model";
 import { IntegrantesService } from "../service/integrantes.service";
 import { Integrantes } from "../model/integrantes-model";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-home",
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit {
   ];
 
   p: number = 1;
+  openNavbar: boolean;
 
   constructor(
     public contasService: ContasService,
@@ -73,7 +75,8 @@ export class HomeComponent implements OnInit {
     public integrantesService: IntegrantesService,
     private excelService: ExcelService,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   key: string = "descricao";
@@ -83,19 +86,16 @@ export class HomeComponent implements OnInit {
     this.reverse = !this.reverse;
   }
 
-  previous(){
-    for (let i = 0; i < this.mes.length; i--){
-      this.mes[i];
-    }
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
   }
 
-  next(){
-    for (let i = 0; i < this.mes.length; i++){
-      this.mes[i];
-    }
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
   }
 
-  recuperarDadosTabela() {
+   recuperarDadosTabela() {
     let array: Array<any> = [];
     for (let conta of this.contas) {
       array.push({
@@ -191,7 +191,6 @@ export class HomeComponent implements OnInit {
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
       this.exibirFormularioEdicao = false;
-      location.reload();
     });
   }
 
@@ -277,7 +276,6 @@ export class HomeComponent implements OnInit {
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
         });
       }
-      location.reload();
     });
   }
 
@@ -287,17 +285,4 @@ export class HomeComponent implements OnInit {
       "Despesas"
     );
   }
-
-  // marcarComoPago() {
-  //   debugger;
-  //   var status = "";
-  //   status = "Pago";
-  //   this.contas2.forEach(function(result) {
-  //     result.status = status;
-  //     this.contasService.updateConta(result._id).subscribe((res) =>{
-  //       this.refreshContas();
-  //       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
-  //     });
-  //   })
-  // }
 }
