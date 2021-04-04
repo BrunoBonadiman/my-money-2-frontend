@@ -29,7 +29,8 @@ export class GraficoComponent implements OnInit {
 
   valores = [
     5535.16,
-    5004.92
+    5029.54,
+    4878.50
   ];
 
   grafico: Grafico[];
