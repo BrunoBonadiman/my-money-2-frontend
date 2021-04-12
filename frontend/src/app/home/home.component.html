@@ -1,4 +1,4 @@
-<header class="header" id="header" [ngClass]="{'body-pd': openNavbar}">
+<!-- <header class="header" id="header" [ngClass]="{'body-pd': openNavbar}">
   <div class="header__toggle">
     <i class='bx bx-menu' id="header-toggle" (click)="showNavbar()"></i>
   </div>
@@ -28,7 +28,7 @@
           <span class="nav__name">Cadastro</span>
         </a>
 
-        <!-- <a href="#" class="nav-link waves-light nav__link" mdbWavesEffect>
+        <a href="#" class="nav-link waves-light nav__link" mdbWavesEffect>
           <i class='bx bx-bookmark nav__icon'></i>
           <span class="nav__name">Favorites</span>
         </a>
@@ -36,7 +36,7 @@
         <a href="#" class="nav-link waves-light nav__link" mdbWavesEffect>
           <i class='bx bx-folder nav__icon'></i>
           <span class="nav__name">Data</span>
-        </a> -->
+        </a>
 
         <a [routerLink]="['/grafico']" class="nav-link waves-light nav__link" mdbWavesEffect customHeight="50" mdbTooltip="Analytics" placement="right">
           <i class='bx bx-bar-chart-alt-2 nav__icon'></i>
@@ -50,11 +50,13 @@
       <span class="nav__name">Sair</span>
     </a>
   </nav>
-</div>
+</div>  -->
+
+<app-sidebar></app-sidebar>
 
 
-<div class="container" id="body-pd" [ngClass]="{'body-pd': openNavbar}">
-  <div class="row" style="margin-top:80px;">
+<div class="container">
+  <div class="row" style="margin-top:20px;">
     <div class="col-lg-3 col-6">
       <div class="small-box bg-primary">
         <div class="inner">
@@ -308,9 +310,5 @@
   </mdb-card>
 </div>
 
-<footer class="page-footer font-small teal accent-3" [ngClass]="{'body-pd': openNavbar}">
-  <div class="footer-copyright text-center py-3">© 2021 Copyright: Todos os direitos reservados
-    <a href="http://my-money-2-frontend.herokuapp.com/login">My Money</a>
-  </div>
-</footer>
+<app-footer></app-footer>
 
