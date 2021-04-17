@@ -75,7 +75,6 @@ export class GraficoComponent implements OnInit {
   }
 
   listarValores() {
-    debugger;
     let array: Array<any> = [];
     for (let valores of this.grafico) {
       array.push({

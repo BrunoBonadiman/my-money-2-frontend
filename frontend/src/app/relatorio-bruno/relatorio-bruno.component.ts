@@ -43,7 +43,6 @@ export class RelatorioBrunoComponent implements OnInit {
     let array: Array<any> = [];
     for (let conta of this.contasBruno) {
       array.push({
-        "Id": conta._id,
         "Conta": conta.descricao,
         "Detalhe": conta.detalhe,
         "Valor": conta.valor,
@@ -171,14 +170,4 @@ export class RelatorioBrunoComponent implements OnInit {
   voltarParaTelaInicial(): void {
     this.router.navigate(['/dashboard']);
   }
-
-  // marcarComoPago(): void {
-  //   for(let conta of this.contasBruno){
-  //     conta.status = 'Pago';
-  //     this.contasBrunoService.updateContaBruno(conta).subscribe(data => {
-  //       this.refreshContas();
-  //     });
-  //   }
-  //   location.reload();
-  // }
 }

@@ -43,13 +43,12 @@ export class RelatorioDecoComponent implements OnInit {
     let array: Array<any> = [];
     for (let conta of this.contasDeco) {
       array.push({
-        "Id": conta._id,
         "Conta": conta.descricao,
         "Detalhe": conta.detalhe,
         "Valor": conta.valor,
         "Vencimento": conta.vencimento,
         "Parcela": conta.parcela,
-        "Status": conta.status,
+        "Status": conta.status
       });
     }
     return array;

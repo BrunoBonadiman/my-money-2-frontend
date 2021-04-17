@@ -90,20 +90,14 @@ export class HomeComponent implements OnInit {
     this.openNavbar = !this.openNavbar;
   }
 
-  onLogout() {
-    this.userService.deleteToken();
-    this.router.navigate(['/login']);
-  }
-
    recuperarDadosTabela() {
     let array: Array<any> = [];
     for (let conta of this.contas) {
       array.push({
-        Id: conta._id,
-        Conta: conta.descricao,
-        Valor: conta.valorTotal,
-        Vencimento: conta.vencimento,
-        Status: conta.status,
+        "Conta": conta.descricao,
+        "Valor": conta.valorTotal,
+        "Vencimento": conta.vencimento,
+        "Status": conta.status
       });
     }
     return array;
@@ -148,14 +142,6 @@ export class HomeComponent implements OnInit {
     return aux.toFixed(2);
   }
 
-  recuperaIntegrante1(){
-    let name = "";
-    for(let integrantes of this.integrante){
-      name = integrantes.integrante1;
-    }
-    return console.log(name);
-  }
-
   ngOnInit() {
     this.resetForm();
     this.refreshContas();
@@ -191,6 +177,7 @@ export class HomeComponent implements OnInit {
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
       this.exibirFormularioEdicao = false;
+      location.reload();
     });
   }
 
@@ -276,6 +263,7 @@ export class HomeComponent implements OnInit {
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
         });
       }
+      location.reload();
     });
   }
 
