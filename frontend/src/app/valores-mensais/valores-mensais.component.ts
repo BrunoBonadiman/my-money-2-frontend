@@ -23,6 +23,14 @@ export class ValoresMensaisComponent implements OnInit {
 
   constructor(public graficoService: GraficoService, private userService: UserService, private location: Location, private router: Router) { }
 
+
+  key: string = "mes";
+  reverse: boolean = false;
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
   ngOnInit() {
     this.resetForm();
     this.refreshDados();
@@ -45,6 +53,14 @@ export class ValoresMensaisComponent implements OnInit {
       });
     }
     return this.array;
+  }
+
+  recuperaValorTotal2() {
+    let aux = 0;
+    for (let conta of this.grafico) {
+      aux += parseFloat(conta.valor.toString());
+    }
+    return aux.toFixed(2);
   }
 
   cadastrarNovoDado(form: NgForm) {

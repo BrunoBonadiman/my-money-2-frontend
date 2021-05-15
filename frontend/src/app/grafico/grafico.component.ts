@@ -31,7 +31,7 @@ export class GraficoComponent implements OnInit {
     5535.16,
     5029.54,
     4878.50,
-    5593.65
+    5606.24
   ];
 
   grafico: Grafico[];
@@ -40,6 +40,7 @@ export class GraficoComponent implements OnInit {
   constructor(public graficoService: GraficoService,
     private userService: UserService,
     private router: Router) { }
+
 
   ngOnInit() {
     this.graficoService.getDados().subscribe((res) => {
