@@ -19,7 +19,6 @@ export class ValoresMensaisComponent implements OnInit {
   user: User;
   grafico: Grafico[] = [];
   array: Array<any> = [];
-  openNavbar: boolean;
 
   constructor(public graficoService: GraficoService, private userService: UserService, private location: Location, private router: Router) { }
 
@@ -35,10 +34,6 @@ export class ValoresMensaisComponent implements OnInit {
     this.resetForm();
     this.refreshDados();
     console.log(this.recuperarListaDeValores());
-  }
-
-  showNavbar(): void{
-    this.openNavbar = !this.openNavbar;
   }
 
   onLogout() {
