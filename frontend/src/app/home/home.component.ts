@@ -43,10 +43,10 @@ export class HomeComponent implements OnInit {
   integrante: Integrantes[] = [];
   contas: Contas[] = [];
   contas2: Contas;
-  contasBruno: ContasBruno[];
-  contasDeco: ContasDeco[];
-  contasFranciele: ContasFranciele[];
-  contasPenha: ContasPenha[];
+  contasBruno: ContasBruno[] = [];
+  contasDeco: ContasDeco[] = [];
+  contasFranciele: ContasFranciele[] = [];
+  contasPenha: ContasPenha[] = [];
 
   mes = [
     'Janeiro/2021',
@@ -217,26 +217,102 @@ export class HomeComponent implements OnInit {
   }
 
   listarContasBruno(){
-    this.contasBrunoService.getContasBruno().subscribe((res) => {
-      this.contasBruno = res as ContasBruno[];
+    this.userService.getUserProfile().subscribe((usuario: any) => {
+      this.user = usuario as User;
+      usuario.user.fullName;
+
+      this.contasBrunoService.getContasBruno().subscribe((res: ContasBruno[]) => {
+        res
+          .filter((x) => !this.contasBruno.map((x) => x._id).includes(x._id))
+          .forEach((conta) => {
+            this.userService.getUser(conta.user).subscribe((user: any) => {
+              conta.userName = user.user.fullName;
+              if (conta.userName == usuario.user.fullName) {
+                this.contasBruno.push(conta);
+                return conta;
+              } else {
+                (err) => {
+                  console.log(err);
+                };
+              }
+            });
+          });
+      });
     });
   }
 
   listarContasDeco(){
-    this.contasDecoService.getContasDeco().subscribe((res) => {
-      this.contasDeco = res as ContasDeco[];
+    this.userService.getUserProfile().subscribe((usuario: any) => {
+      this.user = usuario as User;
+      usuario.user.fullName;
+
+      this.contasDecoService.getContasDeco().subscribe((res: ContasDeco[]) => {
+        res
+          .filter((x) => !this.contasDeco.map((x) => x._id).includes(x._id))
+          .forEach((conta) => {
+            this.userService.getUser(conta.user).subscribe((user: any) => {
+              conta.userName = user.user.fullName;
+              if (conta.userName == usuario.user.fullName) {
+                this.contasDeco.push(conta);
+                return conta;
+              } else {
+                (err) => {
+                  console.log(err);
+                };
+              }
+            });
+          });
+      });
     });
   }
 
   listarContasFranciele(){
-    this.contasFrancieleService.getContasFranciele().subscribe((res) => {
-      this.contasFranciele = res as ContasFranciele[];
+    this.userService.getUserProfile().subscribe((usuario: any) => {
+      this.user = usuario as User;
+      usuario.user.fullName;
+
+      this.contasFrancieleService.getContasFranciele().subscribe((res: ContasFranciele[]) => {
+        res
+          .filter((x) => !this.contasFranciele.map((x) => x._id).includes(x._id))
+          .forEach((conta) => {
+            this.userService.getUser(conta.user).subscribe((user: any) => {
+              conta.userName = user.user.fullName;
+              if (conta.userName == usuario.user.fullName) {
+                this.contasFranciele.push(conta);
+                return conta;
+              } else {
+                (err) => {
+                  console.log(err);
+                };
+              }
+            });
+          });
+      });
     });
   }
 
   listarContasPenha(){
-    this.contasPenhaService.getContasPenha().subscribe((res) => {
-      this.contasPenha = res as ContasPenha[];
+    this.userService.getUserProfile().subscribe((usuario: any) => {
+      this.user = usuario as User;
+      usuario.user.fullName;
+
+      this.contasPenhaService.getContasPenha().subscribe((res: ContasPenha[]) => {
+        res
+          .filter((x) => !this.contasPenha.map((x) => x._id).includes(x._id))
+          .forEach((conta) => {
+            this.userService.getUser(conta.user).subscribe((user: any) => {
+              conta.userName = user.user.fullName;
+              if (conta.userName == usuario.user.fullName) {
+                this.contasPenha.push(conta);
+                return conta;
+              } else {
+                (err) => {
+                  console.log(err);
+                };
+              }
+            });
+          });
+      });
     });
   }
 
