@@ -1,32 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { ContasDecoService } from '../service/contas-deco.service';
-import { ExcelService } from '../service/excel.service';
-import Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
-import { ContasDeco } from '../model/contas-deco-model';
-import { UserService } from '../shared/user.service';
-import { User } from '../shared/user.model';
+import { ContasBrunoService } from '../../apis/service/contas-bruno.service';
+import { ExcelService } from '../../apis/service/excel.service';
+import Swal from 'sweetalert2';
+import { ContasBruno } from '../../apis/model/contas-bruno-model';
+import { UserService } from '../../shared/user.service';
+import { User } from '../../shared/user.model';
 
 @Component({
-  selector: 'app-relatorio-deco',
-  templateUrl: './relatorio-deco.component.html',
-  styleUrls: ['./relatorio-deco.component.scss'],
-  providers: [ContasDecoService, ExcelService, UserService]
+  selector: 'app-relatorio-bruno',
+  templateUrl: './relatorio-bruno.component.html',
+  styleUrls: ['./relatorio-bruno.component.scss'],
+  providers: [ContasBrunoService, ExcelService, UserService]
 })
-export class RelatorioDecoComponent implements OnInit {
+export class RelatorioBrunoComponent implements OnInit {
 
   exibirFormularioEdicao = false;
   valorCalculado = 0;
   user: User;
-  contasDeco: ContasDeco[] = [];
+  contasBruno: ContasBruno[] = [];
 
   p: number = 1;
   openNavbar: boolean;
 
   constructor(
-    public contasDecoService: ContasDecoService,
+    public contasBrunoService: ContasBrunoService,
     private excelService: ExcelService,
     private userService: UserService,
     private location: Location,
@@ -41,22 +41,21 @@ export class RelatorioDecoComponent implements OnInit {
   }
   recuperarDadosTabela() {
     let array: Array<any> = [];
-    for (let conta of this.contasDeco) {
+    for (let conta of this.contasBruno) {
       array.push({
         "Conta": conta.descricao,
         "Detalhe": conta.detalhe,
         "Valor": conta.valor,
         "Vencimento": conta.vencimento,
         "Parcela": conta.parcela,
-        "Status": conta.status
+        "Status": conta.status,
       });
     }
     return array;
   }
-
   recuperarValorTotal2(){
     let aux = 0;
-    for (let conta of this.contasDeco) {
+    for (let conta of this.contasBruno) {
       aux += parseFloat(conta.valor.toString());
     }
     return aux.toFixed(2);
@@ -68,7 +67,7 @@ export class RelatorioDecoComponent implements OnInit {
   }
 
   cadastrarNovaConta(form: NgForm) {
-    this.contasDecoService.addContaDeco(form.value).subscribe((res) => {
+    this.contasBrunoService.addContaBruno(form.value).subscribe((res) => {
       this.resetForm(form);
       this.refreshContas();
       Swal.fire("Sucesso!", "Conta cadastrada com sucesso!", "success");
@@ -77,7 +76,7 @@ export class RelatorioDecoComponent implements OnInit {
 
   resetForm(form?: NgForm) {
     if (form) form.reset();
-    this.contasDecoService.selectContaDeco = {
+    this.contasBrunoService.selectContaBruno = {
       _id: "",
       descricao: "",
       detalhe: "",
@@ -89,7 +88,7 @@ export class RelatorioDecoComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.contasDecoService.updateContaDeco(form.value).subscribe((res) => {
+    this.contasBrunoService.updateContaBruno(form.value).subscribe((res) => {
       this.resetForm(form);
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
@@ -102,17 +101,26 @@ export class RelatorioDecoComponent implements OnInit {
     this.exibirFormularioEdicao = false;
   }
 
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
+
   refreshContas() {
     this.userService.getUserProfile().subscribe((usuario:any) => {
       this.user = usuario as User;
       usuario.user.fullName;
 
-      this.contasDecoService.getContasDeco().subscribe((res: ContasDeco[]) => {
-        res.filter(x => !this.contasDeco.map(x => x._id).includes(x._id)).forEach(conta => {
+      this.contasBrunoService.getContasBruno().subscribe((res: ContasBruno[]) => {
+        res.filter(x => !this.contasBruno.map(x => x._id).includes(x._id)).forEach(conta => {
           this.userService.getUser(conta.user).subscribe((user: any) => {
             conta.userName = user.user.fullName;
             if(conta.userName == usuario.user.fullName){
-              this.contasDeco.push(conta);
+              this.contasBruno.push(conta);
               return conta;
             }else{
               (err) => {
@@ -125,18 +133,9 @@ export class RelatorioDecoComponent implements OnInit {
     });
   }
 
-  showNavbar(): void{
-    this.openNavbar = !this.openNavbar;
-  }
-
-  onLogout() {
-    this.userService.deleteToken();
-    this.router.navigate(['/login']);
-  }
-
-  onEdit(contas: ContasDeco) {
+  onEdit(contas: ContasBruno) {
     this.exibirFormularioEdicao = true;
-    this.contasDecoService.selectContaDeco = contas;
+    this.contasBrunoService.selectContaBruno = contas;
   }
 
   onDelete(_id: string, form: NgForm) {
@@ -151,7 +150,7 @@ export class RelatorioDecoComponent implements OnInit {
       cancelButtonText: "Não",
     }).then((result) => {
       if (result.value) {
-        this.contasDecoService.deleteContaDeco(_id).subscribe((res) => {
+        this.contasBrunoService.deleteContaBruno(_id).subscribe((res) => {
           this.refreshContas();
           this.resetForm(form);
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
@@ -164,7 +163,7 @@ export class RelatorioDecoComponent implements OnInit {
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(
       this.recuperarDadosTabela(),
-      "Despesas_Deco"
+      "Despesas_Bruno"
     );
   }
 

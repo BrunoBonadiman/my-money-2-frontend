@@ -1,37 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { ContasBrunoService } from '../service/contas-bruno.service';
-import { ExcelService } from '../service/excel.service';
+import { ContasPenhaService } from '../../apis/service/contas-penha.service';
+import { ExcelService } from '../../apis/service/excel.service';
 import Swal from 'sweetalert2';
-import { ContasBruno } from '../model/contas-bruno-model';
-import { UserService } from '../shared/user.service';
-import { User } from '../shared/user.model';
+import { NgForm } from '@angular/forms';
+import { ContasPenha } from '../../apis/model/contas-penha-model';
+import { UserService } from '../../shared/user.service';
+import { User } from '../../shared/user.model';
 
 @Component({
-  selector: 'app-relatorio-bruno',
-  templateUrl: './relatorio-bruno.component.html',
-  styleUrls: ['./relatorio-bruno.component.scss'],
-  providers: [ContasBrunoService, ExcelService, UserService]
+  selector: 'app-relatorio-penha',
+  templateUrl: './relatorio-penha.component.html',
+  styleUrls: ['./relatorio-penha.component.scss'],
+  providers: [ContasPenhaService, ExcelService, UserService]
 })
-export class RelatorioBrunoComponent implements OnInit {
+export class RelatorioPenhaComponent implements OnInit {
 
   exibirFormularioEdicao = false;
   valorCalculado = 0;
   user: User;
-  contasBruno: ContasBruno[] = [];
-
+  contasPenha: ContasPenha[] = [];
   p: number = 1;
   openNavbar: boolean;
 
   constructor(
-    public contasBrunoService: ContasBrunoService,
+    public contasPenhaService: ContasPenhaService,
     private excelService: ExcelService,
     private userService: UserService,
     private location: Location,
     private router: Router
-  ) {}
+  ) { }
 
   key: string = 'descricao';
   reverse: boolean = false;
@@ -39,23 +38,34 @@ export class RelatorioBrunoComponent implements OnInit {
     this.key = key;
     this.reverse = !this.reverse;
   }
+
   recuperarDadosTabela() {
     let array: Array<any> = [];
-    for (let conta of this.contasBruno) {
+    for (let conta of this.contasPenha) {
       array.push({
         "Conta": conta.descricao,
         "Detalhe": conta.detalhe,
         "Valor": conta.valor,
         "Vencimento": conta.vencimento,
         "Parcela": conta.parcela,
-        "Status": conta.status,
+        "Status": conta.status
       });
     }
     return array;
   }
+
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
+
   recuperarValorTotal2(){
     let aux = 0;
-    for (let conta of this.contasBruno) {
+    for (let conta of this.contasPenha) {
       aux += parseFloat(conta.valor.toString());
     }
     return aux.toFixed(2);
@@ -67,7 +77,7 @@ export class RelatorioBrunoComponent implements OnInit {
   }
 
   cadastrarNovaConta(form: NgForm) {
-    this.contasBrunoService.addContaBruno(form.value).subscribe((res) => {
+    this.contasPenhaService.addContaPenha(form.value).subscribe((res) => {
       this.resetForm(form);
       this.refreshContas();
       Swal.fire("Sucesso!", "Conta cadastrada com sucesso!", "success");
@@ -76,7 +86,7 @@ export class RelatorioBrunoComponent implements OnInit {
 
   resetForm(form?: NgForm) {
     if (form) form.reset();
-    this.contasBrunoService.selectContaBruno = {
+    this.contasPenhaService.selectContaPenha = {
       _id: "",
       descricao: "",
       detalhe: "",
@@ -88,7 +98,7 @@ export class RelatorioBrunoComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.contasBrunoService.updateContaBruno(form.value).subscribe((res) => {
+    this.contasPenhaService.updateContaPenha(form.value).subscribe((res) => {
       this.resetForm(form);
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
@@ -101,26 +111,17 @@ export class RelatorioBrunoComponent implements OnInit {
     this.exibirFormularioEdicao = false;
   }
 
-  showNavbar(): void{
-    this.openNavbar = !this.openNavbar;
-  }
-
-  onLogout() {
-    this.userService.deleteToken();
-    this.router.navigate(['/login']);
-  }
-
   refreshContas() {
     this.userService.getUserProfile().subscribe((usuario:any) => {
       this.user = usuario as User;
       usuario.user.fullName;
 
-      this.contasBrunoService.getContasBruno().subscribe((res: ContasBruno[]) => {
-        res.filter(x => !this.contasBruno.map(x => x._id).includes(x._id)).forEach(conta => {
+      this.contasPenhaService.getContasPenha().subscribe((res: ContasPenha[]) => {
+        res.filter(x => !this.contasPenha.map(x => x._id).includes(x._id)).forEach(conta => {
           this.userService.getUser(conta.user).subscribe((user: any) => {
             conta.userName = user.user.fullName;
             if(conta.userName == usuario.user.fullName){
-              this.contasBruno.push(conta);
+              this.contasPenha.push(conta);
               return conta;
             }else{
               (err) => {
@@ -133,9 +134,9 @@ export class RelatorioBrunoComponent implements OnInit {
     });
   }
 
-  onEdit(contas: ContasBruno) {
+  onEdit(contas: ContasPenha) {
     this.exibirFormularioEdicao = true;
-    this.contasBrunoService.selectContaBruno = contas;
+    this.contasPenhaService.selectContaPenha = contas;
   }
 
   onDelete(_id: string, form: NgForm) {
@@ -150,7 +151,7 @@ export class RelatorioBrunoComponent implements OnInit {
       cancelButtonText: "Não",
     }).then((result) => {
       if (result.value) {
-        this.contasBrunoService.deleteContaBruno(_id).subscribe((res) => {
+        this.contasPenhaService.deleteContaPenha(_id).subscribe((res) => {
           this.refreshContas();
           this.resetForm(form);
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
@@ -163,7 +164,7 @@ export class RelatorioBrunoComponent implements OnInit {
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(
       this.recuperarDadosTabela(),
-      "Despesas_Bruno"
+      "Despesas_Penha"
     );
   }
 

@@ -1,22 +1,22 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
 import { NgForm } from "@angular/forms";
-import { Contas } from "../model/contas-model";
-import { ContasService } from "../service/contas.service";
+import { Contas } from "../../apis/model/contas-model";
+import { ContasService } from "../../apis/service/contas.service";
 import Swal from "sweetalert2";
-import { ExcelService } from "../service/excel.service";
-import { ContasBrunoService } from "../service/contas-bruno.service";
-import { ContasDecoService } from "../service/contas-deco.service";
-import { ContasFrancieleService } from "../service/contas-franciele.service";
-import { ContasPenhaService } from "../service/contas-penha.service";
-import { ContasBruno } from "../model/contas-bruno-model";
-import { ContasDeco } from "../model/contas-deco-model";
-import { ContasFranciele } from "../model/contas-franciele-model";
-import { ContasPenha } from "../model/contas-penha-model";
-import { UserService } from "../shared/user.service";
-import { User } from "../shared/user.model";
-import { IntegrantesService } from "../service/integrantes.service";
-import { Integrantes } from "../model/integrantes-model";
+import { ExcelService } from "../../apis/service/excel.service";
+import { ContasBrunoService } from "../../apis/service/contas-bruno.service";
+import { ContasDecoService } from "../../apis/service/contas-deco.service";
+import { ContasFrancieleService } from "../../apis/service/contas-franciele.service";
+import { ContasPenhaService } from "../../apis/service/contas-penha.service";
+import { ContasBruno } from "../../apis/model/contas-bruno-model";
+import { ContasDeco } from "../../apis/model/contas-deco-model";
+import { ContasFranciele } from "../../apis/model/contas-franciele-model";
+import { ContasPenha } from "../../apis/model/contas-penha-model";
+import { UserService } from "../../shared/user.service";
+import { User } from "../../shared/user.model";
+import { IntegrantesService } from "../../apis/service/integrantes.service";
+import { Integrantes } from "../../apis/model/integrantes-model";
 import { Router } from '@angular/router';
 
 @Component({

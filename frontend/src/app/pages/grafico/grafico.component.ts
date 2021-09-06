@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Grafico } from '../model/grafico-model';
-import { GraficoService } from '../service/grafico.service';
-import { UserService } from '../shared/user.service';
+import { Grafico } from '../../apis/model/grafico-model';
+import { GraficoService } from '../../apis/service/grafico.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-grafico',
@@ -34,7 +34,8 @@ export class GraficoComponent implements OnInit {
     5606.24,
     5556.71,
     6616.23,
-    6175.14
+    6175.14,
+    5973.31
   ];
 
   grafico: Grafico[];

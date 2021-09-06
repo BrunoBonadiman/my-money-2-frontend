@@ -1,12 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
 import { Router } from '@angular/router';
-import { IntegrantesService } from "../service/integrantes.service";
+import { IntegrantesService } from "../../apis/service/integrantes.service";
 import Swal from "sweetalert2";
 import { NgForm } from "@angular/forms";
-import { Integrantes } from "../model/integrantes-model";
-import { UserService } from "../shared/user.service";
-import { User } from "../shared/user.model";
+import { Integrantes } from "../../apis/model/integrantes-model";
+import { UserService } from "../../shared/user.service";
+import { User } from "../../shared/user.model";
 
 @Component({
   selector: "app-cadastro-integrantes",

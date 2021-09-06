@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Contas } from '../model/contas-model';
-import { ContasService } from '../service/contas.service';
+import { Contas } from '../../apis/model/contas-model';
+import { ContasService } from '../../apis/service/contas.service';
 import swal from 'sweetalert2';
 import { IMyOptions } from 'ng-uikit-pro-standard';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/user.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-cadastro',

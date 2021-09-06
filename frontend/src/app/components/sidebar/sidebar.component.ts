@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Integrantes } from '../model/integrantes-model';
-import { IntegrantesService } from '../service/integrantes.service';
-import { UserService } from '../shared/user.service';
+import { Integrantes } from '../../apis/model/integrantes-model';
+import { IntegrantesService } from '../../apis/service/integrantes.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-sidebar',

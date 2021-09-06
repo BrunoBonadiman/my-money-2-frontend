@@ -1,31 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { ContasDecoService } from '../../apis/service/contas-deco.service';
+import { ExcelService } from '../../apis/service/excel.service';
 import Swal from 'sweetalert2';
-import { ContasFranciele } from '../model/contas-franciele-model';
-import { ContasFrancieleService } from '../service/contas-franciele.service';
-import { ExcelService } from '../service/excel.service';
-import { User } from '../shared/user.model';
-import { UserService } from '../shared/user.service';
+import { NgForm } from '@angular/forms';
+import { ContasDeco } from '../../apis/model/contas-deco-model';
+import { UserService } from '../../shared/user.service';
+import { User } from '../../shared/user.model';
 
 @Component({
-  selector: 'app-relatorio-franciele',
-  templateUrl: './relatorio-franciele.component.html',
-  styleUrls: ['./relatorio-franciele.component.scss'],
-  providers: [ContasFrancieleService, ExcelService, UserService]
+  selector: 'app-relatorio-deco',
+  templateUrl: './relatorio-deco.component.html',
+  styleUrls: ['./relatorio-deco.component.scss'],
+  providers: [ContasDecoService, ExcelService, UserService]
 })
-export class RelatorioFrancieleComponent implements OnInit {
+export class RelatorioDecoComponent implements OnInit {
 
   exibirFormularioEdicao = false;
   valorCalculado = 0;
-  contasFranciele: ContasFranciele[] = [];
   user: User;
+  contasDeco: ContasDeco[] = [];
+
   p: number = 1;
   openNavbar: boolean;
 
   constructor(
-    public contasFrancieleService: ContasFrancieleService,
+    public contasDecoService: ContasDecoService,
     private excelService: ExcelService,
     private userService: UserService,
     private location: Location,
@@ -40,7 +41,7 @@ export class RelatorioFrancieleComponent implements OnInit {
   }
   recuperarDadosTabela() {
     let array: Array<any> = [];
-    for (let conta of this.contasFranciele) {
+    for (let conta of this.contasDeco) {
       array.push({
         "Conta": conta.descricao,
         "Detalhe": conta.detalhe,
@@ -53,18 +54,9 @@ export class RelatorioFrancieleComponent implements OnInit {
     return array;
   }
 
-  showNavbar(): void{
-    this.openNavbar = !this.openNavbar;
-  }
-
-  onLogout() {
-    this.userService.deleteToken();
-    this.router.navigate(['/login']);
-  }
-
   recuperarValorTotal2(){
     let aux = 0;
-    for (let conta of this.contasFranciele) {
+    for (let conta of this.contasDeco) {
       aux += parseFloat(conta.valor.toString());
     }
     return aux.toFixed(2);
@@ -76,7 +68,7 @@ export class RelatorioFrancieleComponent implements OnInit {
   }
 
   cadastrarNovaConta(form: NgForm) {
-    this.contasFrancieleService.addContaFranciele(form.value).subscribe((res) => {
+    this.contasDecoService.addContaDeco(form.value).subscribe((res) => {
       this.resetForm(form);
       this.refreshContas();
       Swal.fire("Sucesso!", "Conta cadastrada com sucesso!", "success");
@@ -85,7 +77,7 @@ export class RelatorioFrancieleComponent implements OnInit {
 
   resetForm(form?: NgForm) {
     if (form) form.reset();
-    this.contasFrancieleService.selectContaFranciele = {
+    this.contasDecoService.selectContaDeco = {
       _id: "",
       descricao: "",
       detalhe: "",
@@ -97,8 +89,7 @@ export class RelatorioFrancieleComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    debugger;
-    this.contasFrancieleService.updateContaFranciele(form.value).subscribe((res) => {
+    this.contasDecoService.updateContaDeco(form.value).subscribe((res) => {
       this.resetForm(form);
       this.refreshContas();
       Swal.fire("Sucesso!", "Registro atualizado com sucesso!", "success");
@@ -116,12 +107,12 @@ export class RelatorioFrancieleComponent implements OnInit {
       this.user = usuario as User;
       usuario.user.fullName;
 
-      this.contasFrancieleService.getContasFranciele().subscribe((res: ContasFranciele[]) => {
-        res.filter(x => !this.contasFranciele.map(x => x._id).includes(x._id)).forEach(conta => {
+      this.contasDecoService.getContasDeco().subscribe((res: ContasDeco[]) => {
+        res.filter(x => !this.contasDeco.map(x => x._id).includes(x._id)).forEach(conta => {
           this.userService.getUser(conta.user).subscribe((user: any) => {
             conta.userName = user.user.fullName;
             if(conta.userName == usuario.user.fullName){
-              this.contasFranciele.push(conta);
+              this.contasDeco.push(conta);
               return conta;
             }else{
               (err) => {
@@ -134,10 +125,18 @@ export class RelatorioFrancieleComponent implements OnInit {
     });
   }
 
-  onEdit(contas: ContasFranciele) {
-    debugger;
+  showNavbar(): void{
+    this.openNavbar = !this.openNavbar;
+  }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(['/login']);
+  }
+
+  onEdit(contas: ContasDeco) {
     this.exibirFormularioEdicao = true;
-    this.contasFrancieleService.selectContaFranciele = contas;
+    this.contasDecoService.selectContaDeco = contas;
   }
 
   onDelete(_id: string, form: NgForm) {
@@ -152,7 +151,7 @@ export class RelatorioFrancieleComponent implements OnInit {
       cancelButtonText: "Não",
     }).then((result) => {
       if (result.value) {
-        this.contasFrancieleService.deleteContaFranciele(_id).subscribe((res) => {
+        this.contasDecoService.deleteContaDeco(_id).subscribe((res) => {
           this.refreshContas();
           this.resetForm(form);
           Swal.fire("Sucesso!", "Conta deletada com sucesso!", "success");
@@ -165,7 +164,7 @@ export class RelatorioFrancieleComponent implements OnInit {
   exportAsXLSX(): void {
     this.excelService.exportAsExcelFile(
       this.recuperarDadosTabela(),
-      "Despesas_Franciele"
+      "Despesas_Deco"
     );
   }
 

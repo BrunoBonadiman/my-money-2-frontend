@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { SignUpComponent } from './user/sign-up/sign-up.component';
-import { SignInComponent } from './user/sign-in/sign-in.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { HomeComponent } from './home/home.component';
-import { RelatorioBrunoComponent } from './relatorio-bruno/relatorio-bruno.component';
-import { RelatorioFrancieleComponent } from './relatorio-franciele/relatorio-franciele.component';
-import { RelatorioPenhaComponent } from './relatorio-penha/relatorio-penha.component';
-import { RelatorioDecoComponent } from './relatorio-deco/relatorio-deco.component';
-import { PerfilComponent } from './perfil/perfil.component';
-import { FooterComponent } from './footer/footer.component';
-import { CadastroIntegrantesComponent } from './cadastro-integrantes/cadastro-integrantes.component';
-import { GraficoComponent } from './grafico/grafico.component';
-import { ValoresMensaisComponent } from './valores-mensais/valores-mensais.component';
+import { UserComponent } from './pages/user/user.component';
+import { SignUpComponent } from './pages/user/sign-up/sign-up.component';
+import { SignInComponent } from './pages/user/sign-in/sign-in.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { HomeComponent } from './pages/home/home.component';
+import { RelatorioBrunoComponent } from './pages/relatorio-bruno/relatorio-bruno.component';
+import { RelatorioFrancieleComponent } from './pages/relatorio-franciele/relatorio-franciele.component';
+import { RelatorioPenhaComponent } from './pages/relatorio-penha/relatorio-penha.component';
+import { RelatorioDecoComponent } from './pages/relatorio-deco/relatorio-deco.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CadastroIntegrantesComponent } from './pages/cadastro-integrantes/cadastro-integrantes.component';
+import { GraficoComponent } from './pages/grafico/grafico.component';
+import { ValoresMensaisComponent } from './pages/valores-mensais/valores-mensais.component';
 
 export const appRoutes: Routes = [
   {

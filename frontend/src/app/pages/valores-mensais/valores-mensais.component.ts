@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Grafico } from '../model/grafico-model';
-import { GraficoService } from '../service/grafico.service';
-import { User } from '../shared/user.model';
-import { UserService } from '../shared/user.service';
+import { Grafico } from '../../apis/model/grafico-model';
+import { GraficoService } from '../../apis/service/grafico.service';
+import { User } from '../../shared/user.model';
+import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
 
 @Component({
