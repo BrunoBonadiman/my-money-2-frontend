@@ -36,7 +36,9 @@ export class GraficoComponent implements OnInit {
     6616.23,
     6175.14,
     5973.31,
-    6044.05
+    6044.05,
+    5650.51 
+
   ];
 
   grafico: Grafico[];
