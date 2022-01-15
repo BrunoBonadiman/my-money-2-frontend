@@ -13,32 +13,22 @@ import { UserService } from '../../shared/user.service';
 export class GraficoComponent implements OnInit {
 
   mes = [
-    'Janeiro/2021',
-    'Fevereiro/2021',
-    'Março/2021',
-    'Abril/2021',
-    'Maio/2021',
-    'Junho/2021',
-    'Julho/2021',
-    'Agosto/2021',
-    'Setembro/2021',
-    'Outubro/2021',
-    'Novembro/2021',
-    'Dezembro/2021'
+    'Janeiro/2022',
+    'Fevereiro/2022',
+    'Março/2022',
+    'Abril/2022',
+    'Maio/2022',
+    'Junho/2022',
+    'Julho/2022',
+    'Agosto/2022',
+    'Setembro/2022',
+    'Outubro/2022',
+    'Novembro/2022',
+    'Dezembro/2022'
   ];
 
   valores = [
-    5535.16,
-    5029.54,
-    4878.50,
-    5606.24,
-    5556.71,
-    6616.23,
-    6175.14,
-    5973.31,
-    6044.05,
-    5650.51 
-
+    7154.54
   ];
 
   grafico: Grafico[];
